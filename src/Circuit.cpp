@@ -30,6 +30,5 @@ void nts::Circuit::dump()
 {
 	for (auto const &el : _graph) {
 		el->dump();
-		// std::cout << "salut" << std::endl;
 	}
 }
