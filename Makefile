@@ -4,12 +4,15 @@ CC	= g++
 
 RM	= rm -f
 
-SRCS	= ./Component.cpp \
-	  ./main.cpp 
+SRCS	= ./main.cpp \
+	  ./src/Circuit.cpp \
+	  ./src/Component.cpp \
+	  ./src/Input.cpp \
+	  ./src/Output.cpp 
 
 OBJS	= $(SRCS:.cpp=.o)
 
-CPPFLAGS = -I ./pp
+CPPFLAGS = -I ./src/pp
 CPPFLAGS += -W -Wall -Wextra
 
 all: $(NAME)
