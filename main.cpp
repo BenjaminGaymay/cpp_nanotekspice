@@ -8,9 +8,9 @@
 #include <iostream>
 #include <fstream>
 // #include "./src/Component.hpp" 
-#include "./src/Circuit.hpp"
-#include "./src/Input.hpp"
-#include "./src/Output.hpp"
+#include "Circuit.hpp"
+#include "Input.hpp"
+#include "Output.hpp"
 
 void readFile(const std::string fileName, nts::Circuit &circuit)
 {
