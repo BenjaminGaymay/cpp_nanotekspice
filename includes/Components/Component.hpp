@@ -6,7 +6,7 @@
 //
 
 #pragma once
- 
+
 #include <iostream>
 #include <vector>
 #include "IComponent.hpp"
@@ -21,5 +21,3 @@ namespace nts {
 		std::size_t _nb_pins;
 	};
 }
- 
-std::ostream &operator<<(std::ostream &, const nts::Component &);
