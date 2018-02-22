@@ -24,5 +24,5 @@ namespace nts {
 	class PinOutput {
 	public:
 		std::vector<Pin> _dependencies;
-	}
+	};
 }
