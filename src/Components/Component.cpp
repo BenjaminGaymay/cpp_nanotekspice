@@ -6,6 +6,6 @@
 //
  
 #include "Component.hpp"
- 
+
 nts::Component::~Component()
 {}
