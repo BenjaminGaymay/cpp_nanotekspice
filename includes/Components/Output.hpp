@@ -7,16 +7,17 @@
 
 #pragma once
 
-#include "IComponent.hpp"
+#include "Component.hpp"
 
 namespace nts {
-	class Input : public IComponent {
+	class Output : public Component {
 	public:
-		Input();
-		~Input();
+		Output();
+		~Output();
 		void dump() const;
 		Tristate compute(std::size_t pin = 1);
 		void setLink(std::size_t pin, IComponent &other, std::size_t otherPin);
+
 	public:
 		Tristate getState() { return _state; }
 	private:

@@ -8,19 +8,17 @@
 #pragma once
  
 #include <iostream>
-#include <list>
+#include <vector>
 #include "IComponent.hpp"
+#include "Pins.hpp"
 
 namespace nts {
 	class Component : public IComponent{
 	public:
-		Component(int);
 		~Component();
-		std::list<int> _neighbors;
-		int _id;
-		Component &operator>>(const Component &);
-	protected:
-	private:
+		std::string _name;
+		std::vector<nts::Pins*> _pins;
+		std::size_t _nb_pins;
 	};
 }
  

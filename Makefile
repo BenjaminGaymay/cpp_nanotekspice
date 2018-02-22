@@ -4,7 +4,7 @@ CC	= g++
 
 RM	= rm -f
 
-SRCS	= ./main.cpp \
+SRCS	= ./src/main.cpp \
 	  ./src/Components/Circuit.cpp \
 	  ./src/Components/Component.cpp \
 	  ./src/Components/Input.cpp \
@@ -12,7 +12,7 @@ SRCS	= ./main.cpp \
 
 OBJS	= $(SRCS:.cpp=.o)
 
-CPPFLAGS = -I ./src/Components/
+CPPFLAGS = -I ./includes/Components/
 CPPFLAGS += -W -Wall -Wextra
 
 all: $(NAME)
