@@ -26,7 +26,7 @@ namespace nts {
 	class Pin {
 	public:
 		Pin(std::size_t index, std::string component)
-			: _component(component), _index(index), _state(UNDEFINED), _connected() {}
+			: _component(component), _index(index), _state(UNDEFINED) {}
 		~Pin();
 		std::string _component;
 		std::size_t _index;
@@ -36,8 +36,9 @@ namespace nts {
 
 	class PinOutput : public Pin {
 	public:
-		PinOutput();
-		std::vector<Pin> _dependencies;
+		PinOutput(std::size_t index, std::string component, Gate gate)
+			: Pin(index, component), _gate(gate) {}
 		Gate _gate;
+		std::vector<Pin> _dependencies;
 	};
 }
