@@ -12,9 +12,6 @@
 #include "IComponent.hpp"
 #include "Pins.hpp"
 
-nts::Tristate fct_and(std::vector<nts::Pin *>);
-
-
 namespace nts {
 	class Component : public IComponent{
 	public:
@@ -28,20 +25,8 @@ namespace nts {
 		// Useless ?
 		nts::Tristate compute(std::size_t pin = 1) { return TRUE; };
 		void setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin) {};
-		void dump() const {
-			for (auto const &value : _pins) {
-				std::cout << value->_component << " : " << value->_index << " : " << value->_state << std::endl;
-			}
-		}
-		void test()
-		{
-			for (auto &value : _pins) {
-				if (value->_type == OUTPUT) {
-					auto tmp = static_cast<PinOutput *>(value);
-					value->_state = fct_and(tmp->_dependencies);
-				}
-			}
-		}
+		void dump() const;
+		void refreshOutput();
 	};
 
 	class And : public Component {
