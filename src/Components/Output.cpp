@@ -7,7 +7,7 @@
 
 #include "Output.hpp"
 
-nts::Output::Output()
+nts::Output::Output() : Component("Output", 1)
 {
 }
 

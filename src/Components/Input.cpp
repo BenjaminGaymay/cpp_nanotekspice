@@ -7,7 +7,7 @@
 
 #include "Input.hpp"
 
-nts::Input::Input()
+nts::Input::Input() : Component("Input", 1)
 {
 }
 

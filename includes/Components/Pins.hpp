@@ -23,22 +23,28 @@ namespace nts {
 		SUM_CARRY
 	};
 
+	enum PinType {
+		INPUT,
+		OUTPUT
+	};
+
 	class Pin {
 	public:
 		Pin(std::size_t index, std::string component)
-			: _component(component), _index(index), _state(UNDEFINED) {}
-		~Pin();
+			: _component(component), _index(index), _state(UNDEFINED), _type(INPUT) {}
+		//~Pin();
 		std::string _component;
 		std::size_t _index;
 		Tristate _state;
-		std::vector<Pin> _connected;
+		std::vector<Pin *> _connected;
+		PinType _type;
 	};
 
 	class PinOutput : public Pin {
 	public:
-		PinOutput(std::size_t index, std::string component, Gate gate)
-			: Pin(index, component), _gate(gate) {}
+		PinOutput(std::size_t index, std::string component, std::vector<Pin *> dep, Gate gate)
+			: Pin(index, component), _dependencies(dep), _gate(gate) { _type = OUTPUT; }
+		std::vector<Pin *> _dependencies;
 		Gate _gate;
-		std::vector<Pin> _dependencies;
 	};
 }
