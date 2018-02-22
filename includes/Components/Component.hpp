@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include <vector>
+#include <map>
 #include "IComponent.hpp"
 #include "Pins.hpp"
 
@@ -27,6 +28,7 @@ namespace nts {
 		void setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin) {};
 		void dump() const;
 		void refreshOutput();
+		void refreshPinById(std::size_t);
 	};
 
 	class And : public Component {
@@ -40,8 +42,27 @@ namespace nts {
 		{
 			_pins.push_back(new Pin(1, _name));
 			_pins.push_back(new Pin(2, _name));
-			_pins.push_back(new PinOutput(3, _name, {_pins[0], _pins[1]}, AND));
+			_pins.push_back(new PinOutput(3, _name, {1, 2}, AND));
 		}
 	};
 
+	class component4081 : public Component {
+	public:
+		component4081() : Component("4081", 6)
+		{
+			createPin();
+		}
+
+		void createPin()
+		{
+			_pins.push_back(new Pin(1, _name));
+			_pins.push_back(new Pin(2, _name));
+			_pins.push_back(new PinOutput(3, _name, {1, 2}, AND));
+			_pins.push_back(new PinOutput(4, _name, {5, 6}, AND));
+			_pins.push_back(new Pin(5, _name));
+			_pins.push_back(new Pin(6, _name));
+		}
+	};
+
+	static std::map<std::string, nts::Component *> g_componentList;
 }

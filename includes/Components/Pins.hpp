@@ -20,7 +20,8 @@ namespace nts {
 		XNOR,
 		INVERTED,
 		SUM,
-		SUM_CARRY
+		SUM_CARRY,
+		GET_OUTPUT
 	};
 
 	enum PinType {
@@ -42,9 +43,9 @@ namespace nts {
 
 	class PinOutput : public Pin {
 	public:
-		PinOutput(std::size_t index, std::string component, std::vector<Pin *> dep, Gate gate)
+		PinOutput(std::size_t index, std::string component, std::vector<std::size_t> dep, Gate gate)
 			: Pin(index, component), _dependencies(dep), _gate(gate) { _type = OUTPUT; }
-		std::vector<Pin *> _dependencies;
+		std::vector<std::size_t> _dependencies;
 		Gate _gate;
 	};
 }

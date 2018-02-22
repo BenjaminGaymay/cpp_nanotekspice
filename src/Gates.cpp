@@ -8,39 +8,33 @@
 #include "Component.hpp"
 
 namespace nts {
-	Tristate gate_and(std::vector<Pin *> dependencies)
+	Tristate gate_and(Pin *input1, Pin *input2)
 	{
-		auto input1 = dependencies[0];
-		auto input2 = dependencies[1];
-
-		std::cout << "JE FAIS UN AND" << std::endl;
+		std::cout << "JE FAIS UN AND de " << input1->_index << " et " << input2->_index << std::endl;
 		return (input1->_state == input2->_state ? TRUE : FALSE);
 	}
 
-	Tristate gate_nand(std::vector<Pin *> dependencies)
+	Tristate gate_nand(Pin *input1, Pin *input2)
 	{
-		auto input1 = dependencies[0];
-		auto input2 = dependencies[1];
-
-		std::cout << "JE FAIS UN AND" << std::endl;
+		std::cout << "JE FAIS UN NAND" << std::endl;
 		return (input1->_state == input2->_state ? TRUE : FALSE);
 	}
 
-	Tristate gate_or(std::vector<Pin *> dependencies)
+	Tristate gate_or(Pin *input1, Pin *input2)
 	{
-		auto input1 = dependencies[0];
-		auto input2 = dependencies[1];
-
-		std::cout << "JE FAIS UN AND" << std::endl;
+		std::cout << "JE FAIS UN OR" << std::endl;
 		return (input1->_state == input2->_state ? TRUE : FALSE);
 	}
 
-	Tristate gate_nor(std::vector<Pin *> dependencies)
+	Tristate gate_nor(Pin *input1, Pin *input2)
 	{
-		auto input1 = dependencies[0];
-		auto input2 = dependencies[1];
-
-		std::cout << "JE FAIS UN AND" << std::endl;
+		std::cout << "JE FAIS UN NOR" << std::endl;
 		return (input1->_state == input2->_state ? TRUE : FALSE);
+	}
+
+	Tristate get_output(Pin *input, Pin *useless = nullptr)
+	{
+		std::cout << "GET OUTPUT" << std::endl;
+		return (input->_state);
 	}
 }
