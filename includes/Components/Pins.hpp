@@ -12,5 +12,7 @@ namespace nts {
 	public:
 		Pins();
 		~Pins();
+		std::string _component;
+		std::size_t _index;
 	};
 }
