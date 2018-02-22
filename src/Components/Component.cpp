@@ -16,7 +16,7 @@ void nts::Component::refreshOutput()
 	for (auto &value : _pins) {
 		if (value->_type == OUTPUT) {
 			auto tmp = static_cast<PinOutput *>(value);
-			value->_state = gate_and(tmp->_dependencies);
+			value->_state = gate_nand(tmp->_dependencies);
 		}
 	}
 }
