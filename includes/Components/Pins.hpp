@@ -7,14 +7,22 @@
 
 #pragma once
 
+#include "IComponent.hpp"
+
 namespace nts {
-	class Pins {
+	class Pin {
 	public:
-		Pins(std::size_t index, std::string component)
+		Pin(std::size_t index, std::string component)
 			: _component(component), _index(index) {}
-		~Pins();
+		~Pin();
 		std::string _component;
 		std::size_t _index;
-		std::vector<Pins> mdr;
+		nts::Tristate _state;
+		std::vector<Pin> _connected;
 	};
+
+	class PinOutput {
+	public:
+		std::vector<Pin> _dependencies;
+	}
 }
