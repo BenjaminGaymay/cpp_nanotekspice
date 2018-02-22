@@ -17,7 +17,7 @@ namespace nts {
 	public:
 		~Component();
 		std::string _name;
-		std::vector<nts::Pins*> _pins;
+		std::vector<nts::Pin*> _pins;
 		std::size_t _nb_pins;
 	};
 }
