@@ -21,7 +21,7 @@ namespace nts {
 		std::vector<Pin> _connected;
 	};
 
-	class PinOutput {
+	class PinOutput : public Pin {
 	public:
 		std::vector<Pin> _dependencies;
 	};
