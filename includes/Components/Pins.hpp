@@ -10,6 +10,19 @@
 #include "IComponent.hpp"
 
 namespace nts {
+
+	enum Gate {
+		OR,
+		NOR,
+		AND,
+		NAND,
+		XOR,
+		XNOR,
+		INVERTED,
+		SUM,
+		SUM_CARRY
+	};
+
 	class Pin {
 	public:
 		Pin(std::size_t index, std::string component)
@@ -21,8 +34,9 @@ namespace nts {
 		std::vector<Pin> _connected;
 	};
 
-	class PinOutput {
+	class PinOutput : public Pin {
 	public:
 		std::vector<Pin> _dependencies;
+		nts::Gate _gate;
 	};
 }
