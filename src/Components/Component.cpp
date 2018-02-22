@@ -7,20 +7,21 @@
  
 #include "Component.hpp"
  
-Component::Component(int id)
+
+nts::Component::Component(int id)
   : _id(id)
 {}
  
-Component::~Component()
+nts::Component::~Component()
 {}
  
-Component &Component::operator>>(const Component &rhs)
+nts::Component &nts::Component::operator>>(const nts::Component &rhs)
 {
 	_neighbors.push_back(rhs._id);
 	return *this;
 }
 
-std::ostream &operator<<(std::ostream &os, const Component &rhs)
+std::ostream &operator<<(std::ostream &os, const nts::Component &rhs)
 {
 	os << "Id : " << rhs._id << "\nConnected to : \n";
 	for (int n : rhs._neighbors) {
