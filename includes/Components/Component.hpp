@@ -33,7 +33,7 @@ namespace nts {
 
 	class And : public Component {
 	public:
-		And() : Component("And", 3)
+		And(std::string name) : Component(name, 3)
 		{
 			createPin();
 		}
@@ -48,7 +48,7 @@ namespace nts {
 
 	class component4081 : public Component {
 	public:
-		component4081() : Component("4081", 6)
+		component4081(std::string name) : Component(name, 6)
 		{
 			createPin();
 		}
@@ -64,5 +64,5 @@ namespace nts {
 		}
 	};
 
-	Tristate get_output_from(std::string, std::size_t);
+	Tristate get_output_from(std::string, std::size_t, std::map<std::string, Component *>compList);
 }

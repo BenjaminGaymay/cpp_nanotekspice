@@ -37,7 +37,8 @@ void nts::Component::refreshPinById(std::size_t id, std::map<std::string, Compon
 	std::cout << "Pin " << id << " from " << actualPin->_component << " component request " << dependencies[1].first << ":" << dependencies[0].second << " and " << dependencies[1].first << ":" << dependencies[1].second  << std::endl;
 
 	dep0->refreshPinById(dependencies[0].second, compList);
-	dep1->refreshPinById(dependencies[1].second, compList);
+	if (actualPin->_gate != nts::GET_OUTPUT)
+		dep1->refreshPinById(dependencies[1].second, compList);
 	actualPin->_state = fct_gates[actualPin->_gate](pin0, pin1);
 }
 
@@ -48,12 +49,12 @@ void nts::Component::dump() const
 	}
 }
 
-nts::Tristate nts::get_output_from(std::string name, std::size_t pinID)
+nts::Tristate nts::get_output_from(std::string name, std::size_t pinID, std::map<std::string, Component *>compList)
 {
-	//auto component = nts::g_componentList["4081"];
-	//auto pin = component->_pins[pinID - 1];
+	auto component = compList[name];
+	auto pin = component->_pins[pinID - 1];
 
 
-	//std::cout << "GET OUTPUT from " << component->_name << std::endl;
-	//return (pin->_state);
+	std::cout << "GET OUTPUT from " << component->_name << std::endl;
+	return (pin->_state);
 }

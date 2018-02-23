@@ -11,7 +11,7 @@ namespace nts {
 	Tristate gate_and(Pin *input1, Pin *input2)
 	{
 		std::cout << "JE FAIS UN AND de " << input1->_component << ":" << input1->_index << " et " << input1->_component << ":" << input2->_index << std::endl;
-		return (input1->_state == TRUE and input2->_state == TRUE ? TRUE : FALSE);
+		return (input1->_state == TRUE && input2->_state == TRUE ? TRUE : FALSE);
 	}
 
 	Tristate gate_nand(Pin *input1, Pin *input2)
@@ -32,7 +32,7 @@ namespace nts {
 		return (input1->_state == input2->_state ? TRUE : FALSE);
 	}
 
-	Tristate get_output(Pin *input, Pin *useless = nullptr)
+	Tristate get_output(Pin *input, Pin *useless)
 	{
 		std::cout << "GET OUTPUT" << std::endl;
 		return (input->_state);

@@ -12,6 +12,7 @@
 // #include "Input.hpp"
 // #include "Output.hpp"
 #include "Component.hpp"
+#include "IO.hpp"
 
 // void readFile(const std::string fileName, nts::Circuit &circuit)
 // {
@@ -36,28 +37,32 @@
 
 int main()//(int ac, char **av)
 {
-	std::map<std::string, nts::Component *> g_componentList;
+	std::map<std::string, nts::Component *> componentList;
 
-	g_componentList["4081"] = new nts::component4081();
-	auto n1 = g_componentList["4081"];
+	componentList["and0"] = new nts::component4081("and0");
+	componentList["out"] = new nts::Output("out");
+	auto n1 = componentList["and0"];
+	auto n2 = componentList["out"];
 
 	// CONFIG DE BASE
 	n1->_pins[0]->_state = nts::FALSE;
 	n1->_pins[1]->_state = nts::TRUE;
 	n1->_pins[5]->_state = nts::TRUE;
 
-	// LE 5 RECUPERE L'OUTPUT DU 3
+	// AND:5 RECUPERE AND:3
 	delete n1->_pins[4];
-	n1->_pins[4] = new nts::PinOutput(5, n1->_name, {{"4081", 3}, {"4081", 3}}, nts::GET_OUTPUT);
+	n1->_pins[4] = new nts::PinOutput(5, n1->_name, {{"and0", 3}, {"and0", 3}}, nts::GET_OUTPUT);
 
-	// DUMP LA CONFIG
-	n1->dump();
+	// OUT RECUPERE AND:4
+	delete n2->_pins[0];
+	n2->_pins[0] = new nts::PinOutput(1, n2->_name, {{"and0", 4}, {"and0", 4}}, nts::GET_OUTPUT);
 
 	// ON CHERCHER L'OUTPUT DU PIN 4
-	n1->refreshPinById(4, g_componentList);
+	n2->refreshPinById(1, componentList);
 
 	// RESULTATS
-	std::cout << "\nOUTPUT : " << (nts::get_output_from("4081", 4) == nts::TRUE ? "True\n" : "False\n") << std::endl;
+	std::cout << "\nOUTPUT : " << (nts::get_output_from("out", 1, componentList) == nts::TRUE ? "True\n" : "False\n") << std::endl;
+
 	n1->dump();
 
 	// std::string cmd;
