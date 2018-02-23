@@ -23,6 +23,6 @@ namespace nts {
 
 		std::unique_ptr<nts::IComponent> createInput(const std::string &value) const;
 		std::unique_ptr<nts::IComponent> createOutput(const std::string &value) const;
-		std::unique_ptr<nts::IComponent> createAnd(const std::string &value) const;
+		// std::unique_ptr<nts::IComponent> createAnd(const std::string &value) const;
 	};
 }
