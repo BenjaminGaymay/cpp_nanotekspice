@@ -64,5 +64,6 @@ namespace nts {
 		}
 	};
 
-	static std::map<std::string, nts::Component *> g_componentList;
+	Tristate get_output_from(std::string, std::size_t);
+	static std::map<std::string, Component *> g_componentList;
 }

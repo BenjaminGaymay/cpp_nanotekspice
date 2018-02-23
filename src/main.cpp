@@ -56,7 +56,7 @@ int main()//(int ac, char **av)
 	n1->refreshPinById(4);
 
 	// RESULTATS
-	std::cout << "\nOUTPUT : " << (n1->_pins[3]->_state == nts::TRUE ? "True\n" : "False\n") << std::endl;
+	std::cout << "\nOUTPUT : " << (nts::get_output_from("4081", 4) == nts::TRUE ? "True\n" : "False\n") << std::endl;
 	n1->dump();
 
 	// std::string cmd;

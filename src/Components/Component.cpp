@@ -30,14 +30,8 @@ void nts::Component::refreshPinById(std::size_t id)
 	auto dep1 = _pins[actualPin->_dependencies[1] - 1];
 
 	std::cout << "Refreshing " << _name << " starting by pin " << id << std::endl;
-	if (dep0->_state == nts::UNDEFINED) {
-		std::cout << dep0->_component << " : " << dep0->_index << " UNDEFINED" << std::endl;
-		refreshPinById(dep0->_index);
-	}
-	if (dep1->_state == nts::UNDEFINED) {
-		std::cout << dep1->_component << " : " << dep1->_index << " UNDEFINED" << std::endl;
-		refreshPinById(dep1->_index);
-	}
+	refreshPinById(dep0->_index);
+	refreshPinById(dep1->_index);
 	actualPin->_state = fct_gates[actualPin->_gate](dep0, dep1);
 }
 
@@ -46,4 +40,16 @@ void nts::Component::dump() const
 	for (auto const &value : _pins) {
 		std::cout << value->_component << " : " << value->_index << " : " << value->_state << std::endl;
 	}
+}
+
+nts::Tristate nts::get_output_from(std::string name, std::size_t pinID)
+{
+	//auto component = nts::g_componentList["4081"];
+	//auto pin = component->_pins[pinID - 1];
+
+	for (auto &t : nts::g_componentList) {
+		std::cout << "//" << t.first << std::endl;
+	}
+	//std::cout << "GET OUTPUT from " << component->_name << std::endl;
+	//return (pin->_state);
 }
