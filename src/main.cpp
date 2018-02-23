@@ -12,6 +12,8 @@
 
 int main(int ac, char **av)
 {
+	(void)ac;
+	(void)av;
 	std::map<std::string, nts::Component *> componentList;
 
 	componentList["and0"] = new nts::component4081("and0");

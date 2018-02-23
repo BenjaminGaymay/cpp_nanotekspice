@@ -24,8 +24,8 @@ namespace nts {
 		std::size_t _nb_pins;
 
 		// Useless ?
-		nts::Tristate compute(std::size_t pin = 1) { return TRUE; };
-		void setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin) {};
+		nts::Tristate compute(std::size_t pin = 1) { pin = pin; return TRUE; };
+		void setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin) {pin = pin; other = other; otherPin = otherPin;};
 		void dump() const;
 		void refreshPinById(std::size_t, std::map<std::string, Component *>);
 	};

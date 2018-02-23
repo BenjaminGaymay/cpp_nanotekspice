@@ -34,6 +34,7 @@ namespace nts {
 
 	Tristate get_output(Pin *input, Pin *useless)
 	{
+		useless = useless;
 		std::cout << "GET OUTPUT" << std::endl;
 		return (input->_state);
 	}
