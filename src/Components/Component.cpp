@@ -11,15 +11,6 @@
 nts::Component::~Component()
 {}
 
-void nts::Component::refreshOutput()
-{
-	// for (auto &value : _pins) {
-	// 	if (value->_type == OUTPUT) {
-	// 		auto tmp = static_cast<PinOutput *>(value);
-	// 		value->_state = fct_gates[tmp->_gate](tmp->_dependencies);
-	// 	}
-}
-
 void nts::Component::refreshPinById(std::size_t id, std::map<std::string, Component *>compList)
 {
 	if (_pins[id - 1]->_type != OUTPUT)

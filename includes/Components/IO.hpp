@@ -1,8 +1,8 @@
 //
 // EPITECH PROJECT, 2018
-// nanotekspice
+// cpp_nanotekspice
 // File description:
-// nanotekspice
+// IO
 //
 
 #pragma once

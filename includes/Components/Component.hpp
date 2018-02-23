@@ -27,7 +27,6 @@ namespace nts {
 		nts::Tristate compute(std::size_t pin = 1) { return TRUE; };
 		void setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin) {};
 		void dump() const;
-		void refreshOutput();
 		void refreshPinById(std::size_t, std::map<std::string, Component *>);
 	};
 
