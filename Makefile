@@ -8,8 +8,7 @@ SRCS	=	./src/main.cpp			\
 		./src/Gates.cpp			\
 		./src/Components/Circuit.cpp	\
 		./src/Components/Component.cpp	\
-		./src/Components/Input.cpp	\
-		./src/Components/Output.cpp
+		./src/Components/IO.cpp
 
 OBJS	= $(SRCS:.cpp=.o)
 
