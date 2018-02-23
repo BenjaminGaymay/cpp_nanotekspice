@@ -36,9 +36,10 @@
 
 int main()//(int ac, char **av)
 {
-	nts::g_componentList["4081"] = new nts::component4081();
+	std::map<std::string, nts::Component *> g_componentList;
 
-	auto n1 = nts::g_componentList["4081"];
+	g_componentList["4081"] = new nts::component4081();
+	auto n1 = g_componentList["4081"];
 
 	// CONFIG DE BASE
 	n1->_pins[0]->_state = nts::FALSE;
@@ -47,13 +48,13 @@ int main()//(int ac, char **av)
 
 	// LE 5 RECUPERE L'OUTPUT DU 3
 	delete n1->_pins[4];
-	n1->_pins[4] = new nts::PinOutput(5, n1->_name, {3, 3}, nts::GET_OUTPUT);
+	n1->_pins[4] = new nts::PinOutput(5, n1->_name, {{"4081", 3}, {"4081", 3}}, nts::GET_OUTPUT);
 
 	// DUMP LA CONFIG
 	n1->dump();
 
 	// ON CHERCHER L'OUTPUT DU PIN 4
-	n1->refreshPinById(4);
+	n1->refreshPinById(4, g_componentList);
 
 	// RESULTATS
 	std::cout << "\nOUTPUT : " << (nts::get_output_from("4081", 4) == nts::TRUE ? "True\n" : "False\n") << std::endl;

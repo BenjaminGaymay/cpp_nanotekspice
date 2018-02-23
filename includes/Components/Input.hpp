@@ -12,14 +12,17 @@
 namespace nts {
 	class Input : public Component {
 	public:
-		Input();
-		~Input();
-		void dump() const;
-		Tristate compute(std::size_t pin = 1);
-		void setLink(std::size_t pin, IComponent &other, std::size_t otherPin);
+		Input() : Component("Input", 1)
+		{
+			_pins.push_back(new Pin(1, _name));
+		}
+	};
+
+	class Output : public Component {
 	public:
-		Tristate getState() { return _state; }
-	private:
-		Tristate _state;
+		Output() : Component("Output", 1)
+		{
+			_pins.push_back(new PinOutput(1, _name, {{_name, 0}, {_name, 0}}, GET_OUTPUT));
+		}
 	};
 }

@@ -28,7 +28,7 @@ namespace nts {
 		void setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin) {};
 		void dump() const;
 		void refreshOutput();
-		void refreshPinById(std::size_t);
+		void refreshPinById(std::size_t, std::map<std::string, Component *>);
 	};
 
 	class And : public Component {
@@ -42,7 +42,7 @@ namespace nts {
 		{
 			_pins.push_back(new Pin(1, _name));
 			_pins.push_back(new Pin(2, _name));
-			_pins.push_back(new PinOutput(3, _name, {1, 2}, AND));
+			_pins.push_back(new PinOutput(3, _name, {{_name, 1}, {_name, 2}}, AND));
 		}
 	};
 
@@ -57,13 +57,12 @@ namespace nts {
 		{
 			_pins.push_back(new Pin(1, _name));
 			_pins.push_back(new Pin(2, _name));
-			_pins.push_back(new PinOutput(3, _name, {1, 2}, AND));
-			_pins.push_back(new PinOutput(4, _name, {5, 6}, AND));
+			_pins.push_back(new PinOutput(3, _name, {{_name, 1}, {_name, 2}}, AND));
+			_pins.push_back(new PinOutput(4, _name, {{_name, 5}, {_name, 6}}, AND));
 			_pins.push_back(new Pin(5, _name));
 			_pins.push_back(new Pin(6, _name));
 		}
 	};
 
 	Tristate get_output_from(std::string, std::size_t);
-	static std::map<std::string, Component *> g_componentList;
 }
