@@ -45,9 +45,9 @@ namespace nts {
 		}
 	};
 
-	class component4081 : public Component {
+	class C4081 : public Component {
 	public:
-		component4081(std::string name) : Component(name, 6)
+		C4081(std::string name) : Component(name, 6)
 		{
 			createPin();
 		}

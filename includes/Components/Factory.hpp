@@ -19,7 +19,15 @@ namespace nts {
 		enum Comp {
 			INPUT,
 			OUTPUT,
-			C4001
+			C4001,
+			C4081
+		};
+
+		static std::map<std::string, Comp> types = {
+			{"input", INPUT},
+			{"output", OUTPUT},
+			{"4001", C4001},
+			{"4081", C4081}
 		};
 	}
 
@@ -27,6 +35,6 @@ namespace nts {
 	public:
 		Factory();
 		~Factory();
-		Component *Get(Comp::Comp, const std::string &);
+		Component *Get(std::string, const std::string &);
 	};
 }
