@@ -5,6 +5,7 @@
 // Gates
 //
 
+#include <functional>
 #include "Component.hpp"
 
 namespace nts {
@@ -38,4 +39,13 @@ namespace nts {
 		std::cout << "GET OUTPUT" << std::endl;
 		return (input->_state);
 	}
+
+	std::map<Gate, std::function<Tristate(Pin *, Pin *)>> fct_gates =
+	{
+		{OR, gate_or},
+		{NOR, gate_nor},
+		{AND, gate_and},
+		{NAND, gate_nand},
+		{GET_OUTPUT, get_output}
+	};
 }
