@@ -38,5 +38,7 @@ void processCommands(const std::string &command)
 	fc["simulate"] = simulate;
 	fc["display"] = display;
 	fc["loop"] = loop;
-	fc[command](command);
+
+	if (fc.find(command) != fc.end())
+		fc[command](command);
 }

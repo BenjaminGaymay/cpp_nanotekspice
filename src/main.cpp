@@ -130,6 +130,7 @@ int main(int ac, char **av)
 {
 	(void)ac;
 	(void)av;
+	std::string cmd;
 
 	std::map<std::string, nts::Component *> cList;
 
@@ -148,6 +149,10 @@ int main(int ac, char **av)
 	std::cout << "\nStarting simulation..\n" << std::endl;
 	out->refreshPinById(1, cList);
 	std::cout << "\nOUTPUT : " << (nts::get_output_from("out", 1, cList) == nts::TRUE ? "True" : "False") << std::endl;
-
+	while (true) {
+		std::cout << "> ";
+		std::cin >> cmd;
+		processCommands(cmd);
+	}
 	return 0;
 }
