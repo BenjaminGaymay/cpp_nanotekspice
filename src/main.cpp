@@ -10,6 +10,7 @@
 #include "Component.hpp"
 #include "IO.hpp"
 #include "Factory.hpp"
+#include "Commands.hpp"
 
 int main(int ac, char **av)
 {
@@ -46,5 +47,6 @@ int main(int ac, char **av)
 	std::cout << "\nOUTPUT : " << (nts::get_output_from("out", 1, componentList) == nts::TRUE ? "True\n" : "False\n") << std::endl;
 
 	n1->dump();
+	processCommands("loop");
 	return 0;
 }
