@@ -16,10 +16,13 @@ int main(int ac, char **av)
 	(void)ac;
 	(void)av;
 	
+	nts::Factory f;
+
 	std::map<std::string, nts::Component *> componentList;
 
 	componentList["and0"] = new nts::component4081("and0");
-	componentList["out"] = new nts::Output("out");
+	componentList["out"] = f.Get(nts::Comp::Comp::OUTPUT, "out");
+	// new nts::Output("out");
 	auto n1 = componentList["and0"];
 	auto n2 = componentList["out"];
 

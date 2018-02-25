@@ -13,16 +13,15 @@ nts::Factory::Factory()
 nts::Factory::~Factory()
 {}
 
-std::unique_ptr<nts::IComponent> nts::Factory::createInput(const std::string &value)
+nts::Component *nts::Factory::Get(nts::Comp::Comp comp, const std::string &name)
 {
-	return std::make_unique<Input>(value);
+	switch (comp) {
+		case Comp::INPUT:
+			return new Input(name);
+		case Comp::OUTPUT:
+			return new Output(name);
+		case Comp::C4001:
+			return new C4001(name);
+	}
+	return nullptr;
 }
-
-std::unique_ptr<nts::IComponent> nts::Factory::createOutput(const std::string &value)
-{
-	return std::make_unique<Output>(value);
-}
-// std::unique_ptr<IComponent> Factory::create4081(const std::string &value) const
-// {
-// 	return std::make_unique<C4081>(value);
-// }

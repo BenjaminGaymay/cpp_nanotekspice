@@ -49,3 +49,8 @@ nts::Tristate nts::get_output_from(std::string name, std::size_t pinID, std::map
 	std::cout << "GET OUTPUT from " << component->_name << std::endl;
 	return (pin->_state);
 }
+
+void hello()
+{
+	std::cout << "hello world" << std::endl;
+}
