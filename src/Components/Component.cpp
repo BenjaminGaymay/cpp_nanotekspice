@@ -9,7 +9,10 @@
 #include "Gates.hpp"
 
 nts::Component::~Component()
-{}
+{
+	for (size_t i = 0; i < _pins.size(); i++)
+		delete _pins[i];
+}
 
 void nts::Component::refreshPinById(std::size_t id, std::map<std::string, Component *>compList)
 {

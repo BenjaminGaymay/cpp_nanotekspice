@@ -13,6 +13,10 @@
 #include "Component.hpp"
 #include "IO.hpp"
 #include "4001.hpp"
+#include "4011.hpp"
+#include "4030.hpp"
+#include "4069.hpp"
+#include "4081.hpp"
 
 namespace nts {
 	namespace Comp {
@@ -20,6 +24,9 @@ namespace nts {
 			INPUT,
 			OUTPUT,
 			C4001,
+			C4011,
+			C4030,
+			C4069,
 			C4081
 		};
 
@@ -27,6 +34,9 @@ namespace nts {
 			{"input", INPUT},
 			{"output", OUTPUT},
 			{"4001", C4001},
+			{"4011", C4011},
+			{"4030", C4030},
+			{"4069", C4069},
 			{"4081", C4081}
 		};
 	}

@@ -129,13 +129,12 @@ std::map<std::string, nts::Component *> parseFile(std::string file)
 int main(int ac, char **av)
 {
 	(void)ac;
-	(void)av;
 	std::string cmd;
 
 	std::map<std::string, nts::Component *> cList;
 
 	std::cout << "Initialization..\n" << std::endl;
-	cList = parseFile("files/file1");
+	cList = parseFile(av[1]);
 	auto i0 = cList["i0"];
 	auto i1 = cList["i1"];
 	auto i2 = cList["i2"];
