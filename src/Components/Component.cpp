@@ -45,18 +45,3 @@ void nts::Component::dump() const
 		std::cout << value->_component << " : " << value->_index << " : " << value->_state << std::endl;
 	}
 }
-
-nts::Tristate nts::get_output_from(std::string name, std::size_t pinID, std::map<std::string, Component *>compList)
-{
-	auto component = compList[name];
-	auto pin = component->_pins[pinID - 1];
-
-
-	std::cout << "Get output from " << component->_name << ":" << pinID << " (outside any object)"<< std::endl;
-	return (pin->_state);
-}
-
-void hello()
-{
-	std::cout << "hello world" << std::endl;
-}

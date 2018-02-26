@@ -11,12 +11,12 @@
 
 int main(int ac, char **av)
 {
+	std::map<std::string, nts::Component *> cList;
 	std::string cmd;
+
 	if (ac < 2)
 		return std::cerr << "Error: missing file name" << std::endl, 84;
-	std::map<std::string, nts::Component *> cList;
 
-	std::cout << "Initialization..\n" << std::endl;
 	cList = parseFile(av[1]);
 
 	for (auto i = 2 ; i < ac ; i++) {
