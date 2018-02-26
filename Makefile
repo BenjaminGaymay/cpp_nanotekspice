@@ -6,6 +6,9 @@ RM	= rm -f
 
 SRCS	=	./src/main.cpp			\
 		./src/Gates.cpp			\
+		./src/Parser.cpp		\
+		./src/ManageStrings.cpp		\
+		./src/ManageComponents.cpp	\
 		./src/Components/Component.cpp	\
 		./src/Components/Factory.cpp	\
 		./src/Commands.cpp

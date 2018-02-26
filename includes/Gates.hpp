@@ -1,9 +1,9 @@
-/*
-** EPITECH PROJECT, 2018
-** cpp_nanotekspice
-** File description:
-** Gates
-*/
+//
+// EPITECH PROJECT, 2018
+// cpp_nanotekspice
+// File description:
+// Gates
+//
 
 #pragma once
 
