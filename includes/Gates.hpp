@@ -16,6 +16,7 @@ namespace nts {
 	Tristate gate_nand(std::vector<Pin *>);
 	Tristate gate_or(std::vector<Pin *>);
 	Tristate gate_nor(std::vector<Pin *>);
+	Tristate gate_inverted(std::vector<Pin *>);
 	Tristate get_output(std::vector<Pin *>);
 
 	extern std::map<Gate, std::function<Tristate(std::vector<Pin *>)>> fct_gates;

@@ -41,6 +41,15 @@ namespace nts {
 		return input1->_state == TRUE && input2->_state == TRUE ? TRUE : FALSE;
 	}
 
+	Tristate gate_inverted(std::vector<Pin *> deps)
+	{
+		auto state = deps[0]->_state;
+
+		if (state == UNDEFINED)
+			return UNDEFINED;
+		return state == TRUE ? TRUE : FALSE;
+	}
+
 	Tristate get_output(std::vector<Pin *> deps)
 	{
 		auto input = deps[0];
