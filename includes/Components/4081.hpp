@@ -12,7 +12,7 @@
 namespace nts {
 	class C4081 : public Component {
 	public:
-		C4081(std::string name) : Component(name, "4081", 6)
+		C4081(std::string name) : Component(name, "4081", 14)
 		{
 			_pins.push_back(new Pin(1, _name));
 			_pins.push_back(new Pin(2, _name));
@@ -27,7 +27,7 @@ namespace nts {
 			_pins.push_back(new PinOutput(11, _name, {{_name, 12}, {_name, 13}}, AND));
 			_pins.push_back(new Pin(12, _name));
 			_pins.push_back(new Pin(13, _name));
-			_pins.push_back(new PinUseless(7, _name));
+			_pins.push_back(new PinUseless(14, _name));
 		}
 		~C4081() {};
 	};
