@@ -46,6 +46,8 @@ int changeInputValue(std::vector<std::string> inputVector, std::map<std::string,
 		return std::cerr << "Error: Bad value for " << inputVector[0] << '=' << inputVector[1] << std::endl, 84;
 
 	input = cList[inputVector[0]];
+	if (input->_type != "clock" and input->_type != "input")
+		return std::cerr << "Error: Invalid argument: " << inputVector[0] << std::endl, 84;
 	input->_pins[0]->_state = (inputVector[1] == "0" ? nts::FALSE : nts::TRUE);
 	return 0;
 }
