@@ -7,9 +7,11 @@
 
 #include "Parser.hpp"
 #include "ManageComponents.hpp"
+#include "Commands.hpp"
 
 int main(int ac, char **av)
 {
+	std::string cmd;
 	if (ac < 2)
 		return std::cerr << "Error: missing file name" << std::endl, 84;
 	std::map<std::string, nts::Component *> cList;
