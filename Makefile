@@ -10,7 +10,8 @@ SRCS	=	./src/main.cpp			\
 		./src/ManageStrings.cpp		\
 		./src/ManageComponents.cpp	\
 		./src/Components/Component.cpp	\
-		./src/Components/Factory.cpp
+		./src/Components/Factory.cpp	\
+		./src/Commands.cpp
 
 OBJS	= $(SRCS:.cpp=.o)
 
