@@ -51,7 +51,7 @@ int simulate(const std::string &cmd, std::map<std::string, nts::Component *> cLi
 		component = c.second;
 		if ((component->_type == "input" or component->_type == "clock")
 			and component->_pins[0]->_state == nts::UNDEFINED)
-			return std::cerr << "Error: " << component->_name << ":1 is undefined" << std::endl, 84;
+			return std::cerr << "Error: " << component->_name << " is undefined" << std::endl, 84;
 	}
 
 	for (auto &c : cList) {
@@ -77,9 +77,15 @@ int loop(const std::string &cmd, std::map<std::string, nts::Component *> cList)
 
 int dump(const std::string &cmd, std::map<std::string, nts::Component *> cList)
 {
+	std::size_t i = 0;
 	(void)cmd;
-	for (auto &c : cList)
+
+	for (auto &c : cList) {
+		if (i != 0)
+			std::cout << std::endl;
 		c.second->dump();
+		i++;
+	}
 	return 0;
 }
 

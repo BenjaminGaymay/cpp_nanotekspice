@@ -5,6 +5,7 @@
 // nano
 //
 
+#include <iomanip>
 #include "Component.hpp"
 #include "Gates.hpp"
 
@@ -14,7 +15,8 @@ nts::Component::~Component()
 		delete _pins[i];
 }
 
-std::vector<nts::Pin *> nts::Component::extractPins(std::map<std::string, Component *> compList, std::vector<std::pair<std::string, std::size_t>> dep)
+std::vector<nts::Pin *> nts::Component::extractPins(std::map<std::string, Component *> compList,
+				std::vector<std::pair<std::string, std::size_t>> dep)
 {
 	std::vector<Pin *> pins;
 
@@ -39,9 +41,25 @@ void nts::Component::refreshPinById(std::size_t id, std::map<std::string, Compon
 	actualPin->_state = fct_gates[actualPin->_gate](listPins);
 }
 
+std::string getState(nts::Tristate value)
+{
+	switch (value) {
+		case nts::TRUE:
+			return " is True";
+		case nts::FALSE:
+			return " is False";
+		default:
+			return " is Undefined";
+	}
+}
+
 void nts::Component::dump() const
 {
-	for (auto const &value : _pins) {
-		std::cout << value->_component << " : " << value->_index << " : " << value->_state << std::endl;
+	std::string state;
+
+	std::cout << "Name: " << _name << "\t\tType: " << _type << "\t\tNumber of Pins: " << _nb_pins << std::endl;
+	for (auto &pin : _pins) {
+		std::cout << "      -> pin " << std::setw(std::to_string(_pins.size()).length())
+			<< std::left << pin->_index << getState(pin->_state) << std::endl;
 	}
 }

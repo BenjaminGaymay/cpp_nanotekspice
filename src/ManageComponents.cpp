@@ -30,7 +30,7 @@ void createLinks(std::vector<std::pair<std::string, std::string>> links, std::ma
 
 		tmp = cList[second[0]];
 		delete tmp->_pins[std::stoi(second[1]) - 1];
-		tmp->_pins[std::stoi(second[1]) - 1] = new nts::PinOutput(std::stoi(first[1]), tmp->_name, {{first[0], std::stoi(first[1])}}, nts::GET_OUTPUT);
+		tmp->_pins[std::stoi(second[1]) - 1] = new nts::PinOutput(std::stoi(second[1]), tmp->_name, {{first[0], std::stoi(first[1])}}, nts::GET_OUTPUT);
 	}
 }
 
