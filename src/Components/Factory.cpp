@@ -32,6 +32,8 @@ nts::Component *nts::Factory::Get(std::string type, const std::string &name)
 			return new C4069(name);
 		case Comp::C4081:
 			return new C4081(name);
+		case Comp::CLOCK:
+			return new Clock(name);
 	}
 	return nullptr;
 }

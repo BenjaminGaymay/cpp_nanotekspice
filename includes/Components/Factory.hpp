@@ -17,6 +17,7 @@
 #include "4030.hpp"
 #include "4069.hpp"
 #include "4081.hpp"
+#include "Clock.hpp"
 
 namespace nts {
 	namespace Comp {
@@ -27,7 +28,8 @@ namespace nts {
 			C4011,
 			C4030,
 			C4069,
-			C4081
+			C4081,
+			CLOCK
 		};
 
 		static std::map<std::string, Comp> types = {
@@ -37,7 +39,8 @@ namespace nts {
 			{"4011", C4011},
 			{"4030", C4030},
 			{"4069", C4069},
-			{"4081", C4081}
+			{"4081", C4081},
+			{"clock", CLOCK}
 		};
 	}
 
