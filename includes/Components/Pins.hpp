@@ -44,7 +44,8 @@ namespace nts {
 
 	class PinOutput : public Pin {
 	public:
-		PinOutput(std::size_t index, std::string component, std::vector<std::pair<std::string, std::size_t>> dep, Gate gate)
+		PinOutput(std::size_t index, std::string component,
+			std::vector<std::pair<std::string, std::size_t>> dep, Gate gate)
 			: Pin(index, component), _dependencies(dep), _gate(gate) { _type = OUTPUT; }
 		std::vector<std::pair<std::string, std::size_t>> _dependencies;
 		Gate _gate;
