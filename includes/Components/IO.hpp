@@ -12,7 +12,7 @@
 namespace nts {
 	class Input : public Component {
 	public:
-		Input(std::string name) : Component(name, 1)
+		Input(std::string name) : Component(name, "input",  1)
 		{
 			_pins.push_back(new Pin(1, _name));
 		}
@@ -20,7 +20,7 @@ namespace nts {
 
 	class Output : public Component {
 	public:
-		Output(std::string name) : Component(name, 1)
+		Output(std::string name) : Component(name, "output",  1)
 		{
 			_pins.push_back(new PinOutput(1, _name, {{_name, 0}, {_name, 0}}, GET_OUTPUT));
 		}

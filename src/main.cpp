@@ -24,15 +24,10 @@ int main(int ac, char **av)
 			return 84;
 	}
 
-	auto out = cList["out"];
-
-	std::cout << "\nStarting simulation..\n" << std::endl;
-	out->refreshPinById(1, cList);
-	std::cout << "\nOUTPUT : " << (nts::get_output_from("out", 1, cList) == nts::TRUE ? "True" : "False") << std::endl;
-	while (true) {
+	std::cout << "> ";
+	while (std::cin >> cmd) {
+		processCommands(cmd, cList);
 		std::cout << "> ";
-		std::cin >> cmd;
-		processCommands(cmd);
 	}
 	return 0;
 }

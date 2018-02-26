@@ -16,10 +16,11 @@
 namespace nts {
 	class Component : public IComponent{
 	public:
-		Component(std::string name, std::size_t nb_pins)
-			: _name(name), _nb_pins(nb_pins) {}
+		Component(std::string name, std::string type, std::size_t nb_pins)
+			: _name(name), _type(type), _nb_pins(nb_pins) {}
 		~Component();
 		std::string _name;
+		std::string _type;
 		std::vector<Pin *> _pins;
 		std::size_t _nb_pins;
 
@@ -33,7 +34,7 @@ namespace nts {
 
 	class And : public Component {
 	public:
-		And(std::string name) : Component(name, 3)
+		And(std::string name) : Component(name, "And", 3)
 		{
 			createPin();
 		}

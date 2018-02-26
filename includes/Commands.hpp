@@ -8,5 +8,7 @@
 #pragma once
 
 #include <iostream>
+#include <map>
+#include "Component.hpp"
 
-void processCommands(const std::string &);
+void processCommands(const std::string &, std::map<std::string, nts::Component *>);
