@@ -28,6 +28,7 @@ namespace nts {
 		void setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin) {pin = pin; other = other; otherPin = otherPin;};
 		void dump() const;
 		void refreshPinById(std::size_t, std::map<std::string, Component *>);
+		std::vector<Pin *> extractPins(std::map<std::string, Component *>compList, std::vector<std::pair<std::string, std::size_t>>);
 	};
 
 	class And : public Component {

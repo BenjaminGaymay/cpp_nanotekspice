@@ -14,26 +14,29 @@ nts::Component::~Component()
 		delete _pins[i];
 }
 
-void nts::Component::refreshPinById(std::size_t id, std::map<std::string, Component *>compList)
+std::vector<nts::Pin *> nts::Component::extractPins(std::map<std::string, Component *> compList, std::vector<std::pair<std::string, std::size_t>> dep)
+{
+	std::vector<Pin *> pins;
+
+	for (auto &c: dep) {
+		auto comp = compList[c.first];
+		pins.push_back(comp->_pins[c.second - 1]);
+	}
+	return pins;
+}
+
+void nts::Component::refreshPinById(std::size_t id, std::map<std::string, Component *> compList)
 {
 	if (_pins[id - 1]->_type != OUTPUT)
 		return ;
 
 	auto actualPin = static_cast<PinOutput *>(_pins[id - 1]);
 	auto dependencies = actualPin->_dependencies;
+	auto listPins = extractPins(compList, dependencies);
 
-	auto dep0 = compList[dependencies[0].first];
-	auto dep1 = compList[dependencies[1].first];
-	auto pin0 = dep0->_pins[dependencies[0].second - 1];
-	auto pin1 = dep1->_pins[dependencies[1].second - 1];
-
-
-	std::cout << "Pin " << id << " from " << actualPin->_component << " component request " << dependencies[1].first << ":" << dependencies[0].second << " and " << dependencies[1].first << ":" << dependencies[1].second  << std::endl;
-
-	dep0->refreshPinById(dependencies[0].second, compList);
-	if (actualPin->_gate != nts::GET_OUTPUT)
-		dep1->refreshPinById(dependencies[1].second, compList);
-	actualPin->_state = fct_gates[actualPin->_gate](pin0, pin1);
+	for (auto &dep : dependencies)
+		compList[dep.first]->refreshPinById(dep.second, compList);
+	actualPin->_state = fct_gates[actualPin->_gate](listPins);
 }
 
 void nts::Component::dump() const
