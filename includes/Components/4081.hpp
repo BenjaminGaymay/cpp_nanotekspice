@@ -20,8 +20,15 @@ namespace nts {
 			_pins.push_back(new PinOutput(4, _name, {{_name, 5}, {_name, 6}}, AND));
 			_pins.push_back(new Pin(5, _name));
 			_pins.push_back(new Pin(6, _name));
+			_pins.push_back(new PinUseless(7, _name));
+			_pins.push_back(new Pin(8, _name));
+			_pins.push_back(new Pin(9, _name));
+			_pins.push_back(new PinOutput(10, _name, {{_name, 8}, {_name, 9}}, AND));
+			_pins.push_back(new PinOutput(11, _name, {{_name, 12}, {_name, 13}}, AND));
+			_pins.push_back(new Pin(12, _name));
+			_pins.push_back(new Pin(13, _name));
+			_pins.push_back(new PinUseless(7, _name));
 		}
-
 		~C4081() {};
 	};
 }
