@@ -12,7 +12,7 @@
 namespace nts {
 	class C4011 : public Component {
 	public:
-		C4011(const std::string name) : Component(name, 14)
+		C4011(const std::string name) : Component(name, "4011",  14)
 		{
 			_pins.push_back(new Pin(1, _name));
 			_pins.push_back(new Pin(2, _name));

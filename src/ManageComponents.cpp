@@ -47,7 +47,7 @@ int changeInputValue(std::vector<std::string> inputVector, std::map<std::string,
 	else if (cList.find(inputVector[0]) == cList.end())
 		return std::cerr << "Error: " << inputVector[0] << " doesn't exist in components list" << std::endl, 84;
 	else if (inputVector[1] != "0" and inputVector[1] != "1")
-		return std::cerr << "Error: Bad value for " << inputVector[1] << std::endl, 84;
+		return std::cerr << "Error: Bad value for " << inputVector[0] << '=' << inputVector[1] << std::endl, 84;
 
 	input = cList[inputVector[0]];
 	std::cout << "Input " << inputVector[0] << " is " << (inputVector[1] == "0" ? "False" : "True") << std::endl;
