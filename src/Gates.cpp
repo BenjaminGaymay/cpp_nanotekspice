@@ -11,34 +11,38 @@
 namespace nts {
 	Tristate gate_and(std::vector<Pin *> deps)
 	{
-		auto input1 = deps[0];
-		auto input2 = deps[1];
+		auto state1 = deps[0]->_state;
+		auto state2 = deps[1]->_state;
 
-		return (input1->_state == TRUE && input2->_state == TRUE ? TRUE : FALSE);
+		if (state1 == UNDEFINED or state2 == UNDEFINED)
+			return UNDEFINED;
+		return state1 == TRUE && state2 == TRUE ? TRUE : FALSE;
 	}
 
 	Tristate gate_nand(std::vector<Pin *> deps)
 	{
-		auto input1 = deps[0];
-		auto input2 = deps[1];
-
-		return (input1->_state == TRUE && input2->_state == TRUE ? TRUE : FALSE);
+		auto state = gate_and(deps);
+		
+		if (state == UNDEFINED)
+			return UNDEFINED;
+		return state == TRUE ? FALSE : TRUE;
 	}
 
 	Tristate gate_or(std::vector<Pin *> deps)
 	{
-		auto input1 = deps[0];
-		auto input2 = deps[1];
+		auto state1 = deps[0]->_state;
+		auto state2 = deps[1]->_state;
 
-		return (input1->_state == TRUE && input2->_state == TRUE ? TRUE : FALSE);
+		if (state1 == TRUE or state2 == TRUE)
+			return TRUE;
+		return FALSE;
 	}
 
 	Tristate gate_nor(std::vector<Pin *> deps)
 	{
-		auto input1 = deps[0];
-		auto input2 = deps[1];
+		auto state = gate_or(deps);
 
-		return input1->_state == TRUE && input2->_state == TRUE ? TRUE : FALSE;
+		return state == TRUE ? FALSE : TRUE;
 	}
 
 	Tristate gate_inverted(std::vector<Pin *> deps)
