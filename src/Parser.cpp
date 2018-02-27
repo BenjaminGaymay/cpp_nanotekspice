@@ -6,6 +6,7 @@
 //
 
 #include <fstream>
+#include <exception>
 #include "Parser.hpp"
 #include "ManageComponents.hpp"
 
@@ -39,6 +40,9 @@ std::map<std::string, nts::Component *> parseFile(std::string file)
 				links.push_back({line.substr(0, pos), lstrip(line.erase(0, pos))});
 			}
 	}
+
+	if (step == NONE)
+		throw std::logic_error("Error: invalid circuit");
 
 	cList = createChipsets(chipsets);
 	createLinks(links, cList);

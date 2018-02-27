@@ -22,7 +22,7 @@ namespace nts {
 	public:
 		Output(std::string name) : Component(name, "output",  1)
 		{
-			_pins.push_back(new PinOutput(1, _name, {{_name, 0}, {_name, 0}}, GET_OUTPUT));
+			_pins.push_back(new PinOutput(1, _name, {{_name, 0}}, GET_OUTPUT));
 		}
 	};
 }

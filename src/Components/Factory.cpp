@@ -15,9 +15,10 @@ nts::Factory::~Factory()
 
 nts::Component *nts::Factory::Get(std::string type, const std::string &name)
 {
-	nts::Comp::Comp comp = nts::Comp::types[type];
+	if (nts::Comp::types.find(type) == nts::Comp::types.end())
+		return nullptr;
 
-	switch (comp) {
+	switch (nts::Comp::types[type]) {
 		case Comp::INPUT:
 			return new Input(name);
 		case Comp::OUTPUT:

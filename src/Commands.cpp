@@ -51,13 +51,20 @@ int simulate(const std::string &cmd, std::map<std::string, nts::Component *> cLi
 		component = c.second;
 		if ((component->_type == "input" or component->_type == "clock")
 			and component->_pins[0]->_state == nts::UNDEFINED)
-			return std::cerr << "Error: " << component->_name << " is undefined" << std::endl, 84;
+			return std::cerr << "Error: '" << component->_name << "' is undefined"
+				<< std::endl, 84;
 	}
 
 	for (auto &c : cList) {
 		component = c.second;
-		if (component->_type == "output")
+		if (component->_type == "output") {
+			auto tmpPin = static_cast<nts::PinOutput *>(component->_pins[0])->_dependencies[0];
+
+			if (tmpPin.first == component->_name and tmpPin.second == 0)
+				throw std::logic_error("Error: output '" + component->_name + "' isn't linked to anything");
+
 			component->refreshPinById(1, cList);
+		}
 		else if (component->_type == "clock")
 			component->_pins[0]->_state = (component->_pins[0]->_state == nts::TRUE ? nts::FALSE : nts::TRUE);
 	}
