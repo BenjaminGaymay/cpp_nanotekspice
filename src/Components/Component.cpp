@@ -34,10 +34,16 @@ nts::Tristate nts::Component::compute(std::size_t id)
 
 	auto actualPin = static_cast<PinOutput *>(_pins[id - 1]);
 	auto dependencies = actualPin->_dependencies;
+
+	if (dependencies.size() == 0)
+		return actualPin->_state;
+
 	auto listPins = extractPins(_cList, dependencies);
+
 
 	for (auto &dep : dependencies)
 		_cList[dep.first]->compute(dep.second);
+
 	actualPin->_state = fct_gates[actualPin->_gate](listPins);
 	return actualPin->_state;
 }

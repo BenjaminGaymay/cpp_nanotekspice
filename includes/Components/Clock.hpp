@@ -14,7 +14,7 @@ namespace nts {
 	public:
 		Clock(std::string name) : Component(name, "clock", 1)
 		{
-			_pins.push_back(new Pin(1, _name));
+			_pins.push_back(new PinOutput(1, _name, {}, GET_OUTPUT));
 		}
 	};
 }

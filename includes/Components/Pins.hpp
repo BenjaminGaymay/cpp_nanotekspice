@@ -26,13 +26,14 @@ namespace nts {
 
 	enum PinType {
 		INPUT,
-		OUTPUT
+		OUTPUT,
+		USELESS
 	};
 
 	class Pin {
 	public:
 		Pin(std::size_t index, std::string component)
-			: _component(component), _index(index), _state(UNDEFINED), _type(INPUT), _used(true) {}
+			: _component(component), _index(index), _state(UNDEFINED), _type(INPUT), _used(false) {}
 		std::string _component;
 		std::size_t _index;
 		Tristate _state;
@@ -57,7 +58,7 @@ namespace nts {
 		PinUseless(std::size_t index, std::string component)
 			: Pin(index, component)
 		{
-			_used = false;
+			_type = USELESS;
 		}
 	};
 }
