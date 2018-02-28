@@ -54,9 +54,9 @@ int simulate(const std::string &cmd, std::map<std::string, nts::Component *> cLi
 	for (auto &c : cList) {
 		component = c.second;
 		if (component->_type == "output") {
-			auto tmpPin = static_cast<nts::PinOutput *>(component->_pins[0])->_dependencies[0];
+			auto tmpPin = static_cast<nts::Pin *>(component->_pins[0]);
 
-			if (tmpPin.first == component->_name and tmpPin.second == 0)
+			if (! tmpPin->_used)
 				throw std::logic_error("Error: output '" + component->_name + "' isn't linked to anything");
 
 			component->compute(1);

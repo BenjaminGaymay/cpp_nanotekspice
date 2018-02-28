@@ -37,7 +37,7 @@ bool stringIsNumber(std::string str)
 	return true;
 }
 
-void checkLinkError(std::vector<std::string> first, std::vector<std::string> second,
+bool checkLinkError(std::vector<std::string> first, std::vector<std::string> second,
 			std::map<std::string, nts::Component *> cList)
 {
 	if (cList.find(second[0]) == cList.end() or cList.find(first[0]) == cList.end())
@@ -46,10 +46,33 @@ void checkLinkError(std::vector<std::string> first, std::vector<std::string> sec
 		throw std::logic_error("Error: pin '" + first[1] + "' doesn't exist for chipset '" + first[0] + "'");
 	else if (!(stringIsNumber(second[1])) or cList[second[0]]->_nb_pins < std::stoul(second[1]))
 		throw std::logic_error("Error: pin '" + second[1] + "' doesn't exist for chipset '" + second[0] + "'");
-	else if (cList[first[0]]->_type == "input" and cList[second[0]]->_type == "input")
-		throw std::logic_error("Error: link between inputs: '" + first[0] + "' and '" + second[0] + "'");
-	else if (cList[first[0]]->_type == "output" and cList[second[0]]->_type == "output")
-		throw std::logic_error("Error: link between outputs: '" + first[0] + "' and '" + second[0] + "'");
+
+	auto firstPin = cList[first[0]]->_pins[std::stoul(first[1]) - 1];
+	auto secondPin = cList[second[0]]->_pins[std::stoul(second[1]) - 1];
+
+	if (firstPin->_type != nts::PinType::OUTPUT and secondPin->_type != nts::PinType::OUTPUT)
+		throw std::logic_error("Error: missing output for link: '" + first[0] + ":" +  first[1] + "' and '" + second[0] + ":" +  second[1] + "'");
+	else if (firstPin->_type == nts::PinType::OUTPUT and secondPin->_type == nts::PinType::OUTPUT)
+		throw std::logic_error("Error: link between outputs: '" + first[0] + ":" + first[1] + "' and '" + second[0] + ":" +  second[1] + "'");
+
+	return firstPin->_type == nts::PinType::OUTPUT;
+}
+
+void addLinkInComponent(std::vector<std::string> first, std::vector<std::string> second,
+			std::map<std::string, nts::Component *> cList)
+{
+	nts::Component *tmp;
+
+	tmp = cList[second[0]];
+	delete tmp->_pins[std::stoi(second[1]) - 1];
+	tmp->_pins[std::stoi(second[1]) - 1] = new nts::PinOutput(std::stoi(second[1]),
+			tmp->_name, {{first[0], std::stoi(first[1])}}, nts::GET_OUTPUT);
+
+	auto firstPin = cList[first[0]]->_pins[std::stoul(first[1]) - 1];
+	auto secondPin = cList[second[0]]->_pins[std::stoul(second[1]) - 1];
+
+	firstPin->_used = true;
+	secondPin->_used = true;
 }
 
 void createLinks(std::vector<std::pair<std::string, std::string>> links,
@@ -57,7 +80,6 @@ void createLinks(std::vector<std::pair<std::string, std::string>> links,
 {
 	std::vector<std::string> first;
 	std::vector<std::string> second;
-	nts::Component *tmp;
 
 	if (links.size() == 0)
 		throw std::logic_error("Error: no link found");
@@ -66,12 +88,10 @@ void createLinks(std::vector<std::pair<std::string, std::string>> links,
 		first = splitString(link.first, ':');
 		second = splitString(link.second, ':');
 
-		checkLinkError(first, second, cList);
-
-		tmp = cList[second[0]];
-		delete tmp->_pins[std::stoi(second[1]) - 1];
-		tmp->_pins[std::stoi(second[1]) - 1] = new nts::PinOutput(std::stoi(second[1]),
-				tmp->_name, {{first[0], std::stoi(first[1])}}, nts::GET_OUTPUT);
+		if (checkLinkError(first, second, cList))
+			addLinkInComponent(first, second, cList);
+		else
+			addLinkInComponent(second, first, cList);
 	}
 }
 
