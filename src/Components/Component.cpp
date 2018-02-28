@@ -27,18 +27,19 @@ std::vector<nts::Pin *> nts::Component::extractPins(std::map<std::string, Compon
 	return pins;
 }
 
-void nts::Component::refreshPinById(std::size_t id, std::map<std::string, Component *> compList)
+nts::Tristate nts::Component::compute(std::size_t id)
 {
 	if (_pins[id - 1]->_type != OUTPUT)
-		return ;
+		return _pins[id - 1]->_state;
 
 	auto actualPin = static_cast<PinOutput *>(_pins[id - 1]);
 	auto dependencies = actualPin->_dependencies;
-	auto listPins = extractPins(compList, dependencies);
+	auto listPins = extractPins(_cList, dependencies);
 
 	for (auto &dep : dependencies)
-		compList[dep.first]->refreshPinById(dep.second, compList);
+		_cList[dep.first]->compute(dep.second);
 	actualPin->_state = fct_gates[actualPin->_gate](listPins);
+	return actualPin->_state;
 }
 
 std::string getState(nts::Tristate value)

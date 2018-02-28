@@ -23,29 +23,12 @@ namespace nts {
 		std::string _type;
 		std::vector<Pin *> _pins;
 		std::size_t _nb_pins;
+		std::map<std::string, Component *> _cList;
 
 		// Useless ?
-		nts::Tristate compute(std::size_t pin = 1) { pin = pin; return TRUE; };
+		nts::Tristate compute(std::size_t pin = 1);
 		void setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin) {pin = pin; other = other; otherPin = otherPin;};
 		void dump() const;
-		void refreshPinById(std::size_t, std::map<std::string, Component *>);
 		std::vector<Pin *> extractPins(std::map<std::string, Component *>compList, std::vector<std::pair<std::string, std::size_t>>);
 	};
-
-	class And : public Component {
-	public:
-		And(std::string name) : Component(name, "And", 3)
-		{
-			createPin();
-		}
-
-		void createPin()
-		{
-			_pins.push_back(new Pin(1, _name));
-			_pins.push_back(new Pin(2, _name));
-			_pins.push_back(new PinOutput(3, _name, {{_name, 1}, {_name, 2}}, AND));
-		}
-	};
-
-	Tristate get_output_from(std::string, std::size_t, std::map<std::string, Component *>compList);
 }

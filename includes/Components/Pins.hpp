@@ -33,11 +33,9 @@ namespace nts {
 	public:
 		Pin(std::size_t index, std::string component)
 			: _component(component), _index(index), _state(UNDEFINED), _type(INPUT), _used(true) {}
-		//~Pin();
 		std::string _component;
 		std::size_t _index;
 		Tristate _state;
-		std::vector<Pin *> _connected;
 		PinType _type;
 		bool _used;
 	};
@@ -46,7 +44,10 @@ namespace nts {
 	public:
 		PinOutput(std::size_t index, std::string component,
 			std::vector<std::pair<std::string, std::size_t>> dep, Gate gate)
-			: Pin(index, component), _dependencies(dep), _gate(gate) { _type = OUTPUT; }
+			: Pin(index, component), _dependencies(dep), _gate(gate)
+		{
+			_type = OUTPUT;
+		}
 		std::vector<std::pair<std::string, std::size_t>> _dependencies;
 		Gate _gate;
 	};

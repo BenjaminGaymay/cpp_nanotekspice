@@ -2,7 +2,7 @@
 ## EPITECH PROJECT, 2018
 ## cpp_nanotekspice
 ## File description:
-## 
+##
 ##
 
 NAME	= nanotekspice
@@ -18,6 +18,7 @@ SRCS	=	./src/main.cpp			\
 		./src/ManageComponents.cpp	\
 		./src/Components/Component.cpp	\
 		./src/Components/Factory.cpp	\
+		./src/Signal.cpp		\
 		./src/Commands.cpp
 
 OBJS	= $(SRCS:.cpp=.o)

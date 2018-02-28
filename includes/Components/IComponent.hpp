@@ -2,7 +2,7 @@
 // EPITECH PROJECT, 2018
 // nanotekspice
 // File description:
-// nanotekspice 
+// nanotekspice
 //
 
 #pragma once

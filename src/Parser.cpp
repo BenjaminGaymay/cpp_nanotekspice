@@ -46,5 +46,9 @@ std::map<std::string, nts::Component *> parseFile(std::string file)
 
 	cList = createChipsets(chipsets);
 	createLinks(links, cList);
+
+	for (auto &elem : chipsets)
+		(cList[elem.second])->_cList = cList;
+
 	return cList;
 }
