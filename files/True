@@ -1,0 +1,5 @@
+.chipsets:
+true mdrlol
+output ptdr
+.links:
+mdrlol:1 ptdr:1
