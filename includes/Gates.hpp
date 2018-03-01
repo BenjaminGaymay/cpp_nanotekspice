@@ -12,15 +12,19 @@
 #include "Component.hpp"
 
 namespace nts {
-	Tristate gate_and(std::vector<Pin *> &);
-	Tristate gate_nand(std::vector<Pin *> &);
-	Tristate gate_or(std::vector<Pin *> &);
-	Tristate gate_nor(std::vector<Pin *> &);
-	Tristate gate_xor(std::vector<Pin *> &);
-	Tristate gate_xnor(std::vector<Pin *> &);
-	Tristate gate_inverted(std::vector<Pin *> &);
-	Tristate gate_sum(std::vector<Pin *> &);
-	Tristate get_output(std::vector<Pin *> &);
-
-	extern std::map<Gate, std::function<Tristate(std::vector<Pin *> &)>> fct_gates;
+	class Gates {
+	public:
+		static Tristate gate_and(std::vector<Pin *> &);
+		static Tristate gate_nand(std::vector<Pin *> &);
+		static Tristate gate_or(std::vector<Pin *> &);
+		static Tristate gate_nor(std::vector<Pin *> &);
+		static Tristate gate_xor(std::vector<Pin *> &);
+		static Tristate gate_xnor(std::vector<Pin *> &);
+		static Tristate gate_inverted(std::vector<Pin *> &);
+		static Tristate gate_sum(std::vector<Pin *> &);
+		static Tristate get_output(std::vector<Pin *> &);
+		static std::map<Gate, std::function<Tristate(std::vector<Pin *> &)>> _fct_gates;
+		Gates() {};
+		~Gates() {};
+	};
 }

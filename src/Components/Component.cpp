@@ -29,6 +29,7 @@ std::vector<nts::Pin *> nts::Component::extractPins(std::map<std::string, Compon
 
 nts::Tristate nts::Component::compute(std::size_t id)
 {
+	// Gates g;
 	if (_pins[id - 1]->_type != OUTPUT)
 		return _pins[id - 1]->_state;
 
@@ -44,7 +45,7 @@ nts::Tristate nts::Component::compute(std::size_t id)
 	for (auto &dep : dependencies)
 		_cList[dep.first]->compute(dep.second);
 
-	actualPin->_state = fct_gates[actualPin->_gate](listPins);
+	actualPin->_state = Gates::_fct_gates[actualPin->_gate](listPins);
 	return actualPin->_state;
 }
 
