@@ -16,7 +16,7 @@
 namespace nts {
 	class Component : public IComponent{
 	public:
-		Component(std::string name, std::string type, std::size_t nb_pins)
+		Component(std::string &name, std::string &type, std::size_t &nb_pins)
 			: _name(name), _type(type), _nb_pins(nb_pins) {}
 		~Component();
 		std::string _name;
@@ -26,6 +26,7 @@ namespace nts {
 		std::map<std::string, Component *> _cList;
 
 		// Useless ?
+		std::string getState(Tristate &);
 		nts::Tristate compute(std::size_t pin = 1);
 		void setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin) {pin = pin; other = other; otherPin = otherPin;};
 		void dump() const;

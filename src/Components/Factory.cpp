@@ -13,7 +13,7 @@ nts::Factory::Factory()
 nts::Factory::~Factory()
 {}
 
-nts::Component *nts::Factory::Get(std::string type, const std::string &name)
+nts::Component *nts::Factory::Get(std::string &type, const std::string &name)
 {
 	if (nts::Comp::types.find(type) == nts::Comp::types.end())
 		return nullptr;
