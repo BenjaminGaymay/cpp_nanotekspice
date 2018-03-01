@@ -84,7 +84,7 @@ int dump(const std::string &cmd, std::map<std::string, nts::Component *> &cList)
 
 int processCommands(const std::string &command, std::map<std::string, nts::Component *> &cList)
 {
-	std::map<const std::string, std::function<int(const std::string &, std::map<std::string, nts::Component *>)>> fc;
+	std::map<const std::string, std::function<int(const std::string &, std::map<std::string, nts::Component *> &)>> fc;
 
 	fc["exit"] = my_exit;
 	fc["simulate"] = simulate;

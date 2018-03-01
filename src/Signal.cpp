@@ -17,7 +17,7 @@ void quitLoop(int empty)
 	g_quitLoop = true;
 }
 
-int loop(const std::string &cmd, std::map<std::string, nts::Component *> cList)
+int loop(const std::string &cmd, std::map<std::string, nts::Component *> &cList)
 {
 	(void)cmd;
 	while (! g_quitLoop) {

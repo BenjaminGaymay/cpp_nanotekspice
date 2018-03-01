@@ -95,7 +95,7 @@ void createLinks(std::vector<std::pair<std::string, std::string>> &links,
 	}
 }
 
-int changeInputValue(std::vector<std::string> &inputVector, std::map<std::string, nts::Component *> &cList)
+int changeInputValue(std::vector<std::string> inputVector, std::map<std::string, nts::Component *> &cList)
 {
 	nts::Component *input;
 

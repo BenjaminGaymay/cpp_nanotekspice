@@ -84,12 +84,12 @@ namespace nts {
 		return input->_state;
 	}
 
-	Tristate gate_sum(std::vector<Pin *> deps)
+	Tristate gate_sum(std::vector<Pin *> &deps)
 	{
 		return TRUE;
 	}
 
-	std::map<Gate, std::function<Tristate(std::vector<Pin *>)>> fct_gates =
+	std::map<Gate, std::function<Tristate(std::vector<Pin *> &)>> fct_gates =
 	{
 		{OR, gate_or},
 		{NOR, gate_nor},

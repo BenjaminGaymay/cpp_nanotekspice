@@ -48,7 +48,7 @@ nts::Tristate nts::Component::compute(std::size_t id)
 	return actualPin->_state;
 }
 
-std::string nts::Component::getState(nts::Tristate &value)
+std::string nts::Component::getState(Tristate &value) const
 {
 	switch (value) {
 		case nts::TRUE:

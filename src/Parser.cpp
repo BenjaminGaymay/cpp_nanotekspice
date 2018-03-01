@@ -10,7 +10,7 @@
 #include "Parser.hpp"
 #include "ManageComponents.hpp"
 
-std::map<std::string, nts::Component *> parseFile(std::string &file)
+std::map<std::string, nts::Component *> parseFile(std::string file)
 {
 	std::ifstream fd(file);
 	std::string line;

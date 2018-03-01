@@ -11,4 +11,4 @@
 #include "Component.hpp"
 #include "ManageStrings.hpp"
 
-std::map<std::string, nts::Component *> parseFile(std::string &);
+std::map<std::string, nts::Component *> parseFile(std::string);

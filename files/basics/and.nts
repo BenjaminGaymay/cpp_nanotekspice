@@ -5,9 +5,13 @@
 input		a
 input		b
 output		s
+input		c
+output		s1
 4081		gate
 
 .links:
 a:1		gate:1
 b:1		gate:2
 s:1		gate:3
+c:1		gate:5
+s1:1		gate:4
