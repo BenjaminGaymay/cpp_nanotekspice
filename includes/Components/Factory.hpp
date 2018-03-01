@@ -60,6 +60,6 @@ namespace nts {
 	public:
 		Factory();
 		~Factory();
-		Component *Get(std::string, const std::string &);
+		Component *createComponent(const std::string &, const std::string &);
 	};
 }

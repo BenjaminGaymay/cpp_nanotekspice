@@ -9,6 +9,6 @@
 
 #include <vector>
 
-std::string replaceStr(std::string, std::string, std::string &);
+std::string replaceStr(std::string &, std::string &, std::string &);
 std::string lstrip(std::string &);
-std::vector<std::string> splitString(std::string, char);
+std::vector<std::string> splitString(std::string &, char &);

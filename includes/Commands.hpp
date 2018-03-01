@@ -11,7 +11,7 @@
 #include <map>
 #include "Component.hpp"
 
-int processCommands(const std::string &, std::map<std::string, nts::Component *>);
-int display(const std::string &cmd, std::map<std::string, nts::Component *>);
-int simulate(const std::string &cmd, std::map<std::string, nts::Component *>);
-int loop(const std::string &cmd, std::map<std::string, nts::Component *> cList);
+int processCommands(const std::string &, std::map<std::string, nts::Component *> &);
+int display(const std::string &cmd, std::map<std::string, nts::Component *> &);
+int simulate(const std::string &cmd, std::map<std::string, nts::Component *> &);
+int loop(const std::string &cmd, std::map<std::string, nts::Component *> &);
