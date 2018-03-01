@@ -8,7 +8,7 @@
 #include <iostream>
 #include <vector>
 
-std::string replaceStr(std::string oldStr, std::string newStr, std::string &str)
+std::string replaceStr(std::string &oldStr, std::string &newStr, std::string &str)
 {
 	size_t index = 0;
 	size_t oldStrLen = oldStr.length();
@@ -38,7 +38,7 @@ std::string lstrip(std::string &str)
 	return str;
 }
 
-std::vector<std::string> splitString(std::string str, char separator)
+std::vector<std::string> splitString(std::string &str, char &separator)
 {
 	std::string tmp = "";
 	std::vector<std::string> splited;

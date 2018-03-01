@@ -15,8 +15,8 @@ nts::Component::~Component()
 		delete _pins[i];
 }
 
-std::vector<nts::Pin *> nts::Component::extractPins(std::map<std::string, Component *> compList,
-				std::vector<std::pair<std::string, std::size_t>> dep)
+std::vector<nts::Pin *> nts::Component::extractPins(std::map<std::string, Component *> &compList,
+				std::vector<std::pair<std::string, std::size_t>> &dep)
 {
 	std::vector<Pin *> pins;
 
@@ -48,7 +48,7 @@ nts::Tristate nts::Component::compute(std::size_t id)
 	return actualPin->_state;
 }
 
-std::string getState(nts::Tristate value)
+std::string nts::Component::getState(nts::Tristate &value)
 {
 	switch (value) {
 		case nts::TRUE:

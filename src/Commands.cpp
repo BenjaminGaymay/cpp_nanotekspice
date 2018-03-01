@@ -11,14 +11,14 @@
 #include "ManageStrings.hpp"
 #include "ManageComponents.hpp"
 
-int my_exit(const std::string &cmd, std::map<std::string, nts::Component *> cList)
+int my_exit(const std::string &cmd, std::map<std::string, nts::Component *> &cList)
 {
 	(void)cmd;
 	(void)cList;
 	exit(0);
 }
 
-int display(const std::string &cmd, std::map<std::string, nts::Component *> cList)
+int display(const std::string &cmd, std::map<std::string, nts::Component *> &cList)
 {
 	nts::Component *component;
 	nts::Pin *pin;
@@ -38,7 +38,7 @@ int display(const std::string &cmd, std::map<std::string, nts::Component *> cLis
 	return 0;
 }
 
-int simulate(const std::string &cmd, std::map<std::string, nts::Component *> cList)
+int simulate(const std::string &cmd, std::map<std::string, nts::Component *> &cList)
 {
 	nts::Component *component;
 	(void)cmd;
@@ -68,7 +68,7 @@ int simulate(const std::string &cmd, std::map<std::string, nts::Component *> cLi
 }
 
 
-int dump(const std::string &cmd, std::map<std::string, nts::Component *> cList)
+int dump(const std::string &cmd, std::map<std::string, nts::Component *> &cList)
 {
 	std::size_t i = 0;
 	(void)cmd;
@@ -82,7 +82,7 @@ int dump(const std::string &cmd, std::map<std::string, nts::Component *> cList)
 	return 0;
 }
 
-int processCommands(const std::string &command, std::map<std::string, nts::Component *> cList)
+int processCommands(const std::string &command, std::map<std::string, nts::Component *> &cList)
 {
 	std::map<const std::string, std::function<int(const std::string &, std::map<std::string, nts::Component *>)>> fc;
 
