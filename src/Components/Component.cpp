@@ -9,6 +9,8 @@
 #include "Component.hpp"
 #include "Gates.hpp"
 
+std::size_t nts::Pin::_loopNbr = 1;
+
 nts::Component::~Component()
 {
 	for (size_t i = 0; i < _pins.size(); i++)
@@ -29,13 +31,13 @@ std::vector<nts::Pin *> nts::Component::extractPins(std::map<std::string, Compon
 
 nts::Tristate nts::Component::compute(std::size_t id)
 {
-	// Gates g;
-	if (_pins[id - 1]->_type != OUTPUT)
+	if (_pins[id - 1]->_type != OUTPUT or _pins[id - 1]->_loopState >= nts::Pin::_loopNbr * _pins[id - 1]->_maxLoop)
 		return _pins[id - 1]->_state;
 
 	auto actualPin = static_cast<PinOutput *>(_pins[id - 1]);
 	auto dependencies = actualPin->_dependencies;
 
+	_pins[id - 1]->_loopState += 1;
 	if (dependencies.size() == 0)
 		return actualPin->_state;
 

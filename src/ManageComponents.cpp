@@ -73,7 +73,9 @@ void nts::ManageComp::addLinkInComponent(std::vector<std::string> first, std::ve
 	auto secondPin = cList[second[0]]->_pins[std::stoul(second[1]) - 1];
 
 	firstPin->_used = true;
+	firstPin->_maxLoop += 1;
 	secondPin->_used = true;
+	secondPin->_maxLoop += 1;
 }
 
 void nts::ManageComp::createLinks(std::vector<std::pair<std::string, std::string>> &links,
