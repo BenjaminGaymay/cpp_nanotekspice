@@ -5,6 +5,7 @@
 // NanoTekSpice
 //
 
+#include <memory>
 #include "ManageComponents.hpp"
 #include "ManageStrings.hpp"
 #include "Commands.hpp"
@@ -19,7 +20,7 @@ nts::NanoTekSpice::~NanoTekSpice()
 
 int nts::NanoTekSpice::startNano(const int ac, const char **av)
 {
-	std::map<std::string, nts::Component *> cList;
+	std::map<std::string, Component *> cList;
 	std::string cmd;
 
 	cList = nts::Parser::parseFile(av[1]);
