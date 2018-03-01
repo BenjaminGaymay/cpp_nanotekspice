@@ -24,7 +24,5 @@ namespace nts {
 		static Tristate gate_sum(std::vector<Pin *> &);
 		static Tristate get_output(std::vector<Pin *> &);
 		static std::map<Gate, std::function<Tristate(std::vector<Pin *> &)>> _fct_gates;
-		Gates() {};
-		~Gates() {};
 	};
 }
