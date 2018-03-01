@@ -21,7 +21,7 @@ namespace nts {
 			_pins.push_back(new Pin(5, _name));
 			_pins.push_back(new PinOutput(6, _name, {{_name, 5}}, INVERTED));
 			_pins.push_back(new PinUseless(7, _name));
-			_pins.push_back(new PinOutput(8, _name, {{_name, 8}, {_name,9}}, INVERTED));
+			_pins.push_back(new PinOutput(8, _name, {{_name,9}}, INVERTED));
 			_pins.push_back(new Pin(9, _name));
 			_pins.push_back(new PinOutput(10, _name, {{_name, 11}}, INVERTED));
 			_pins.push_back(new Pin(11, _name));

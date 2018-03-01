@@ -15,10 +15,10 @@ namespace nts {
 		auto state1 = deps[0]->_state;
 		auto state2 = deps[1]->_state;
 
-		if (state1 == FALSE or state2 == FALSE)
-			return FALSE;
 		if (state1 == UNDEFINED or state2 == UNDEFINED)
 			return UNDEFINED;
+		if (state1 == FALSE or state2 == FALSE)
+			return FALSE;
 		return TRUE;
 	}
 
@@ -36,10 +36,10 @@ namespace nts {
 		auto state1 = deps[0]->_state;
 		auto state2 = deps[1]->_state;
 
-		if (state1 == TRUE or state2 == TRUE)
-			return TRUE;
 		if (state1 == UNDEFINED or state2 == UNDEFINED)
 			return UNDEFINED;
+		if (state1 == TRUE or state2 == TRUE)
+			return TRUE;
 		return FALSE;
 	}
 
@@ -47,6 +47,8 @@ namespace nts {
 	{
 		auto state = gate_or(deps);
 
+		if (state == UNDEFINED)
+			return UNDEFINED;
 		return state == TRUE ? FALSE : TRUE;
 	}
 
@@ -91,7 +93,7 @@ namespace nts {
 		return TRUE;
 	}
 
- 	std::map<Gate, std::function<Tristate(std::vector<Pin *> &)>> Gates::_fct_gates = 
+ 	std::map<Gate, std::function<Tristate(std::vector<Pin *> &)>> Gates::_fct_gates =
 	{
 		{OR, &gate_or},
 		{NOR, &gate_nor},
@@ -103,16 +105,4 @@ namespace nts {
 		{SUM, &gate_sum},
 		{GET_OUTPUT, &get_output}
 	};
-	// std::map<Gate, std::function<Tristate(std::vector<Pin *> &)>> fct_gates =
-	// {
-	// 	{OR, gate_or},
-	// 	{NOR, gate_nor},
-	// 	{AND, gate_and},
-	// 	{NAND, gate_nand},
-	// 	{XOR, gate_xor},
-	// 	{XNOR, gate_xnor},
-	// 	{INVERTED, gate_inverted},
-	// 	{SUM, gate_sum},
-	// 	{GET_OUTPUT, get_output}
-	// };
 }
