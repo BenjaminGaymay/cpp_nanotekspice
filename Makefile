@@ -16,9 +16,9 @@ SRCS	=	./src/main.cpp			\
 		./src/Parser.cpp		\
 		./src/ManageStrings.cpp		\
 		./src/ManageComponents.cpp	\
+		./src/NanoTekSpice.cpp		\
 		./src/Components/Component.cpp	\
 		./src/Components/Factory.cpp	\
-		./src/Signal.cpp		\
 		./src/Commands.cpp
 
 OBJS	= $(SRCS:.cpp=.o)

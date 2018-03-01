@@ -10,7 +10,7 @@
 #include "Parser.hpp"
 #include "ManageComponents.hpp"
 
-std::map<std::string, nts::Component *> parseFile(std::string file)
+std::map<std::string, nts::Component *> nts::Parser::parseFile(std::string file)
 {
 	std::ifstream fd(file);
 	std::string line;
@@ -24,10 +24,10 @@ std::map<std::string, nts::Component *> parseFile(std::string file)
 	std::vector<std::pair<std::string, std::string>> links;
 	std::size_t pos;
 
-	std::map<std::string, nts::Component *> cList;
+	std::map<std::string, Component *> cList;
 
 	while (std::getline(fd, line)) {
-		lstrip(line);
+		ManageStrings::lstrip(line);
 		if (line.compare(0, 10, ".chipsets:") == 0)
 			step = CHIPSETS;
 		else if (line.compare(0, 7, ".links:") == 0)
@@ -35,17 +35,17 @@ std::map<std::string, nts::Component *> parseFile(std::string file)
 		else if (line[0] != '#' and line[0] != '\0') {
 			pos = line.find(" ");
 			if (pos != std::string::npos and step == CHIPSETS)
-				chipsets.push_back({line.substr(0, pos), lstrip(line.erase(0, pos))});
+				chipsets.push_back({line.substr(0, pos), ManageStrings::lstrip(line.erase(0, pos))});
 			else if (pos != std::string::npos and step == LINKS)
-				links.push_back({line.substr(0, pos), lstrip(line.erase(0, pos))});
+				links.push_back({line.substr(0, pos), ManageStrings::lstrip(line.erase(0, pos))});
 			}
 	}
 
 	if (step == NONE)
 		throw std::logic_error("Error: invalid circuit");
 
-	cList = createChipsets(chipsets);
-	createLinks(links, cList);
+	cList = ManageComp::createChipsets(chipsets);
+	ManageComp::createLinks(links, cList);
 
 	for (auto &elem : chipsets)
 		(cList[elem.second])->_cList = cList;

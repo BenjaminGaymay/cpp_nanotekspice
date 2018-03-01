@@ -7,22 +7,22 @@
 
 #include <functional>
 #include <map>
-#include "Signal.hpp"
+#include <unistd.h>
+#include <signal.h>
 #include "ManageStrings.hpp"
 #include "ManageComponents.hpp"
+#include "Commands.hpp"
 
-int my_exit(const std::string &cmd, std::map<std::string, nts::Component *> &cList)
+int nts::Commands::my_exit(std::map<std::string, nts::Component *> &cList)
 {
-	(void)cmd;
-	(void)cList;
+	cList = cList;
 	exit(0);
 }
 
-int display(const std::string &cmd, std::map<std::string, nts::Component *> &cList)
+int nts::Commands::display(std::map<std::string, nts::Component *> &cList)
 {
 	nts::Component *component;
 	nts::Pin *pin;
-	(void)cmd;
 
 	for (auto &c : cList) {
 		component = c.second;
@@ -38,10 +38,9 @@ int display(const std::string &cmd, std::map<std::string, nts::Component *> &cLi
 	return 0;
 }
 
-int simulate(const std::string &cmd, std::map<std::string, nts::Component *> &cList)
+int nts::Commands::simulate(std::map<std::string, nts::Component *> &cList)
 {
 	nts::Component *component;
-	(void)cmd;
 
 	for (auto &c : cList) {
 		component = c.second;
@@ -68,10 +67,9 @@ int simulate(const std::string &cmd, std::map<std::string, nts::Component *> &cL
 }
 
 
-int dump(const std::string &cmd, std::map<std::string, nts::Component *> &cList)
+int nts::Commands::dump(std::map<std::string, nts::Component *> &cList)
 {
 	std::size_t i = 0;
-	(void)cmd;
 
 	for (auto &c : cList) {
 		if (i != 0)
@@ -82,9 +80,39 @@ int dump(const std::string &cmd, std::map<std::string, nts::Component *> &cList)
 	return 0;
 }
 
-int processCommands(const std::string &command, std::map<std::string, nts::Component *> &cList)
+static bool g_quitLoop = false;
+
+int nts::Commands::createSignal()
 {
-	std::map<const std::string, std::function<int(const std::string &, std::map<std::string, nts::Component *> &)>> fc;
+	struct sigaction sigIntHandler;
+
+	sigIntHandler.sa_handler = &quitLoop;
+	sigemptyset(&sigIntHandler.sa_mask);
+	sigIntHandler.sa_flags = 0;
+	sigaction(SIGINT, &sigIntHandler, NULL);
+	g_quitLoop = false;
+	return 0;
+}
+
+void nts::Commands::quitLoop(int empty)
+{
+	(void)empty;
+	g_quitLoop = true;
+}
+
+int nts::Commands::loop(std::map<std::string, nts::Component *> &cList)
+{
+	while (! g_quitLoop) {
+		if (nts::Commands::simulate(cList) == 84)
+			return 84;
+		usleep(500);
+	}
+	return 0;
+}
+
+int nts::Commands::processCommands(const std::string &command, std::map<std::string, nts::Component *> &cList)
+{
+	std::map<const std::string, std::function<int(std::map<std::string, nts::Component *> &)>> fc;
 
 	fc["exit"] = my_exit;
 	fc["simulate"] = simulate;
@@ -94,11 +122,11 @@ int processCommands(const std::string &command, std::map<std::string, nts::Compo
 
 	createSignal();
 	if (fc.find(command) != fc.end()) {
-		if (fc[command](command, cList) == 84)
+		if (fc[command](cList) == 84)
 			return 84;
 	}
 	else if (command.find('=') != std::string::npos) {
-		if (changeInputValue(splitString(command, '='), cList) == 84)
+		if (ManageComp::changeInputValue(ManageStrings::splitString(command, '='), cList) == 84)
 			return 84;
 	}
 	else

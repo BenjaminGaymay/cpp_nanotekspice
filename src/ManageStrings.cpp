@@ -7,8 +7,9 @@
 
 #include <iostream>
 #include <vector>
+#include "ManageStrings.hpp"
 
-std::string replaceStr(std::string oldStr, std::string newStr, std::string &str)
+std::string nts::ManageStrings::replaceStr(std::string oldStr, std::string newStr, std::string &str)
 {
 	size_t index = 0;
 	size_t oldStrLen = oldStr.length();
@@ -23,7 +24,7 @@ std::string replaceStr(std::string oldStr, std::string newStr, std::string &str)
 	return str;
 }
 
-std::string lstrip(std::string &str)
+std::string nts::ManageStrings::lstrip(std::string &str)
 {
 	std::string::iterator it = str.begin();
 
@@ -38,7 +39,7 @@ std::string lstrip(std::string &str)
 	return str;
 }
 
-std::vector<std::string> splitString(std::string str, char separator)
+std::vector<std::string> nts::ManageStrings::splitString(std::string str, char separator)
 {
 	std::string tmp = "";
 	std::vector<std::string> splited;

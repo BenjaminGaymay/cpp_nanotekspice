@@ -11,4 +11,9 @@
 #include "Component.hpp"
 #include "ManageStrings.hpp"
 
-std::map<std::string, nts::Component *> parseFile(std::string);
+namespace nts {
+	class Parser {
+	public:
+		static std::map<std::string, nts::Component *> parseFile(std::string);
+	};
+}

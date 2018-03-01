@@ -9,8 +9,9 @@
 #include <exception>
 #include "Factory.hpp"
 #include "ManageStrings.hpp"
+#include "ManageComponents.hpp"
 
-std::map<std::string, nts::Component *> createChipsets(std::vector<std::pair<std::string,
+std::map<std::string, nts::Component *> nts::ManageComp::createChipsets(std::vector<std::pair<std::string,
 						std::string>> &chipsets)
 {
 	std::map<std::string, nts::Component *> cList;
@@ -28,7 +29,7 @@ std::map<std::string, nts::Component *> createChipsets(std::vector<std::pair<std
 	return cList;
 }
 
-bool stringIsNumber(std::string &str)
+bool nts::ManageComp::stringIsNumber(std::string &str)
 {
 	for (auto &c : str) {
 		if (! std::isdigit(c))
@@ -37,7 +38,7 @@ bool stringIsNumber(std::string &str)
 	return true;
 }
 
-bool checkLinkError(std::vector<std::string> first, std::vector<std::string> &second,
+bool nts::ManageComp::checkLinkError(std::vector<std::string> first, std::vector<std::string> &second,
 			std::map<std::string, nts::Component *> &cList)
 {
 	if (cList.find(second[0]) == cList.end() or cList.find(first[0]) == cList.end())
@@ -58,7 +59,7 @@ bool checkLinkError(std::vector<std::string> first, std::vector<std::string> &se
 	return firstPin->_type == nts::PinType::OUTPUT;
 }
 
-void addLinkInComponent(std::vector<std::string> first, std::vector<std::string> &second,
+void nts::ManageComp::addLinkInComponent(std::vector<std::string> first, std::vector<std::string> &second,
 			std::map<std::string, nts::Component *> &cList)
 {
 	nts::Component *tmp;
@@ -75,7 +76,7 @@ void addLinkInComponent(std::vector<std::string> first, std::vector<std::string>
 	secondPin->_used = true;
 }
 
-void createLinks(std::vector<std::pair<std::string, std::string>> &links,
+void nts::ManageComp::createLinks(std::vector<std::pair<std::string, std::string>> &links,
 		std::map<std::string, nts::Component *> &cList)
 {
 	std::vector<std::string> first;
@@ -85,8 +86,8 @@ void createLinks(std::vector<std::pair<std::string, std::string>> &links,
 		throw std::logic_error("Error: no link found");
 
 	for (auto &link : links) {
-		first = splitString(link.first, ':');
-		second = splitString(link.second, ':');
+		first = ManageStrings::splitString(link.first, ':');
+		second = ManageStrings::splitString(link.second, ':');
 
 		if (checkLinkError(first, second, cList))
 			addLinkInComponent(first, second, cList);
@@ -95,7 +96,7 @@ void createLinks(std::vector<std::pair<std::string, std::string>> &links,
 	}
 }
 
-int changeInputValue(std::vector<std::string> inputVector, std::map<std::string, nts::Component *> &cList)
+int nts::ManageComp::changeInputValue(std::vector<std::string> inputVector, std::map<std::string, nts::Component *> &cList)
 {
 	nts::Component *input;
 

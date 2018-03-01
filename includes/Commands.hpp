@@ -11,7 +11,16 @@
 #include <map>
 #include "Component.hpp"
 
-int processCommands(const std::string &, std::map<std::string, nts::Component *> &);
-int display(const std::string &cmd, std::map<std::string, nts::Component *> &);
-int simulate(const std::string &cmd, std::map<std::string, nts::Component *> &);
-int loop(const std::string &cmd, std::map<std::string, nts::Component *> &);
+namespace nts {
+	class Commands {
+	public:
+		static int processCommands(const std::string &, std::map<std::string, nts::Component *> &);
+		static int display(std::map<std::string, nts::Component *> &);
+		static int simulate(std::map<std::string, nts::Component *> &);
+		static int loop(std::map<std::string, nts::Component *> &);
+		static int dump(std::map<std::string, nts::Component *> &);
+		static int my_exit(std::map<std::string, nts::Component *> &);
+		static int createSignal();
+		static void quitLoop(int);
+	};
+}
