@@ -87,6 +87,7 @@ namespace nts {
 
 	Tristate Gates::gate_sum(std::vector<Pin *> &deps)
 	{
+		deps = deps;
 		return TRUE;
 	}
 
