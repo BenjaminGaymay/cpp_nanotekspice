@@ -25,6 +25,8 @@ nts::Component *nts::Factory::createComponent(const std::string &type, const std
 			return new Output(name);
 		case Comp::C4001:
 			return new C4001(name);
+		case Comp::C4008:
+			return new C4008(name);
 		case Comp::C4011:
 			return new C4011(name);
 		case Comp::C4030:
