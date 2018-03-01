@@ -63,6 +63,7 @@ int nts::Commands::simulate(std::map<std::string, nts::Component *> &cList)
 		else if (component->_type == "clock")
 			component->_pins[0]->_state = (component->_pins[0]->_state == nts::TRUE ? nts::FALSE : nts::TRUE);
 	}
+	nts::Pin::_loopNbr += 1;
 	return 0;
 }
 

@@ -30,15 +30,20 @@ namespace nts {
 		USELESS
 	};
 
+
 	class Pin {
 	public:
 		Pin(std::size_t index, std::string component)
-			: _component(component), _index(index), _state(UNDEFINED), _type(INPUT), _used(false) {}
+			: _component(component), _index(index), _state(UNDEFINED), _type(INPUT), _used(false), _loopState(0), _maxLoop(0) {}
 		std::string _component;
 		std::size_t _index;
 		Tristate _state;
 		PinType _type;
 		bool _used;
+		std::size_t _loopState;
+		std::size_t _maxLoop;
+
+		static std::size_t _loopNbr;
 	};
 
 	class PinOutput : public Pin {
