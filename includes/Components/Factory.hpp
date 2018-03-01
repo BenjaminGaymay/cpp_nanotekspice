@@ -24,42 +24,23 @@
 #include "Clock.hpp"
 
 namespace nts {
-	namespace Comp {
-		enum Comp {
-			INPUT,
-			OUTPUT,
-			C4001,
-			C4008,
-			C4011,
-			C4030,
-			C4069,
-			C4071,
-			C4081,
-			CTrue,
-			CFalse,
-			CLOCK
-		};
-
-		static std::map<std::string, Comp> types = {
-			{"input", INPUT},
-			{"output", OUTPUT},
-			{"4001", C4001},
-			{"4008", C4008},
-			{"4011", C4011},
-			{"4030", C4030},
-			{"4069", C4069},
-			{"4071", C4071},
-			{"4081", C4081},
-			{"true", CTrue},
-			{"false", CFalse},
-			{"clock", CLOCK}
-		};
-	}
-
 	class Factory {
 	public:
 		Factory();
 		~Factory();
+		static Component *createInput(const std::string &);
+		static Component *createOutput(const std::string &);
+		static Component *create4001(const std::string &);
+		static Component *create4008(const std::string &);
+		static Component *create4011(const std::string &);
+		static Component *create4030(const std::string &);
+		static Component *create4069(const std::string &);
+		static Component *create4071(const std::string &);
+		static Component *create4081(const std::string &);
+		static Component *createTrue(const std::string &);
+		static Component *createFalse(const std::string &);
+		static Component *createClock(const std::string &);
+		static std::map<const std::string, std::function<Component*(const std::string &)>> _fc_fac;
 		Component *createComponent(const std::string &, const std::string &);
 	};
 }

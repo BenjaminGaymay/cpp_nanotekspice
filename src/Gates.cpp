@@ -91,7 +91,7 @@ namespace nts {
 		return TRUE;
 	}
 
- 	std::map<Gate, std::function<Tristate(std::vector<Pin *> &)>> Gates::_fct_gates = 
+ 	std::map<Gate, std::function<Tristate(std::vector<Pin *> &)>> Gates::_fct_gates =
 	{
 		{OR, &gate_or},
 		{NOR, &gate_nor},
@@ -103,16 +103,4 @@ namespace nts {
 		{SUM, &gate_sum},
 		{GET_OUTPUT, &get_output}
 	};
-	// std::map<Gate, std::function<Tristate(std::vector<Pin *> &)>> fct_gates =
-	// {
-	// 	{OR, gate_or},
-	// 	{NOR, gate_nor},
-	// 	{AND, gate_and},
-	// 	{NAND, gate_nand},
-	// 	{XOR, gate_xor},
-	// 	{XNOR, gate_xnor},
-	// 	{INVERTED, gate_inverted},
-	// 	{SUM, gate_sum},
-	// 	{GET_OUTPUT, get_output}
-	// };
 }

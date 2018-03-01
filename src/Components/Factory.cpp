@@ -7,42 +7,93 @@
 
 #include "Factory.hpp"
 
-nts::Factory::Factory()
-{}
+namespace nts {
+	Factory::Factory()
+	{}
 
-nts::Factory::~Factory()
-{}
+	Factory::~Factory()
+	{}
 
-nts::Component *nts::Factory::createComponent(const std::string &type, const std::string &name)
-{
-	if (nts::Comp::types.find(type) == nts::Comp::types.end())
-		return nullptr;
-
-	switch (nts::Comp::types[type]) {
-		case Comp::INPUT:
-			return new Input(name);
-		case Comp::OUTPUT:
-			return new Output(name);
-		case Comp::C4001:
-			return new C4001(name);
-		case Comp::C4008:
-			return new C4008(name);
-		case Comp::C4011:
-			return new C4011(name);
-		case Comp::C4030:
-			return new C4030(name);
-		case Comp::C4069:
-			return new C4069(name);
-		case Comp::C4071:
-			return new C4071(name);
-		case Comp::C4081:
-			return new C4081(name);
-		case Comp::CTrue:
-			return new True(name);
-		case Comp::CFalse:
-			return new False(name);
-		case Comp::CLOCK:
-			return new Clock(name);
+	Component *Factory::createInput(const std::string &name)
+	{
+		return new Input(name);
 	}
-	return nullptr;
+
+	Component *Factory::createOutput(const std::string &name)
+	{
+		return new Output(name);
+	}
+
+	Component *Factory::create4001(const std::string &name)
+	{
+		return new C4001(name);
+	}
+
+	Component *Factory::create4008(const std::string &name)
+	{
+		return new C4008(name);
+	}
+
+	Component *Factory::create4011(const std::string &name)
+	{
+		return new C4011(name);
+	}
+
+	Component *Factory::create4030(const std::string &name)
+	{
+		return new C4030(name);
+	}
+
+	Component *Factory::create4069(const std::string &name)
+	{
+		return new C4069(name);
+	}
+
+	Component *Factory::create4071(const std::string &name)
+	{
+		return new C4071(name);
+	}
+
+	Component *Factory::create4081(const std::string &name)
+	{
+		return new C4081(name);
+	}
+
+	Component *Factory::createTrue(const std::string &name)
+	{
+		return new True(name);
+	}
+
+	Component *Factory::createFalse(const std::string &name)
+	{
+		return new False(name);
+	}
+
+	Component *Factory::createClock(const std::string &name)
+	{
+		return new Clock(name);
+	}
+
+	Component *Factory::createComponent(const std::string &type, const std::string &name)
+	{
+		if (_fc_fac.find(type) == _fc_fac.end())
+			return nullptr;
+		return _fc_fac[type](name);
+	}
+
+	std::map<const std::string, std::function<nts::Component*(const std::string &)>> Factory::_fc_fac =
+	{
+		{"input", &createInput},
+		{"output", &createOutput},
+		{"4001", &create4001},
+		{"4008", &create4008},
+		{"4011", &create4011},
+		{"4030", &create4030},
+		{"4069", &create4069},
+		{"4071", &create4071},
+		{"4081", &create4081},
+		{"true", &createTrue},
+		{"false", &createFalse},
+		{"clock", &createClock}
+	};
 }
