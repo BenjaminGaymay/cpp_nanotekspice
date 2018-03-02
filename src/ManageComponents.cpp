@@ -14,7 +14,7 @@
 std::map<std::string, nts::Component *> nts::ManageComp::createChipsets(std::vector<std::pair<std::string,
 						std::string>> &chipsets)
 {
-	std::map<std::string, nts::Component *> cList;
+	std::map<std::string, Component *> cList;
 	nts::Factory f;
 
 	if (chipsets.size() == 0)
@@ -23,14 +23,11 @@ std::map<std::string, nts::Component *> nts::ManageComp::createChipsets(std::vec
 	for (auto &chipset : chipsets) {
 		if (chipset.second == "")
 			throw std::logic_error("Error: chipsets must have a name");
-
 		if (cList.find(chipset.second) != cList.end())
 			throw std::logic_error("Error: chipset '" + chipset.second + "' already exist");
-
-		cList[chipset.second] = f.createComponent(chipset.first, chipset.second);
+		cList[chipset.second] = static_cast<Component *>(f.createComponent(chipset.first, chipset.second).release());
 		if (cList[chipset.second] == nullptr)
 			throw std::logic_error("Error: component '" + chipset.first + "' doesn't exist");
-
 	}
 	return cList;
 }
@@ -115,7 +112,6 @@ int nts::ManageComp::changeInputValue(std::vector<std::string> inputVector, std:
 			<< "' doesn't exist in components list" << std::endl, 84;
 	else if (inputVector[1] != "0" and inputVector[1] != "1")
 		return std::cerr << "Error: Bad value for '" << inputVector[0] << "'" << std::endl, 84;
-
 	input = cList[inputVector[0]];
 	if (input->_type != "clock" and input->_type != "input")
 		return std::cerr << "Error: Invalid argument: " << inputVector[0] << std::endl, 84;

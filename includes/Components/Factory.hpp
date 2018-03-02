@@ -26,7 +26,7 @@
 namespace nts {
 	class Factory {
 	public:
-		using FACTORY_FUNCTION = Component *(Factory::*)(const std::string &name) const noexcept;
+		using FACTORY_FUNCTION = std::unique_ptr<IComponent>(Factory::*)(const std::string &name) const noexcept;
 		std::map<const std::string, FACTORY_FUNCTION> _fc_fac;
 		Factory()
 		{
@@ -44,67 +44,67 @@ namespace nts {
 			_fc_fac["false"] = &Factory::createFalse;	
 		};
 		~Factory() {};
-		Component *createInput(const std::string &name) const noexcept
+		std::unique_ptr<IComponent> createInput(const std::string &name) const noexcept
 		{
-			return new Input(name);
+			return std::make_unique<Input>(name);
 		}
 
-		Component *createOutput(const std::string &name) const noexcept
+		std::unique_ptr<IComponent> createOutput(const std::string &name) const noexcept
 		{
-			return new Output(name);
+			return std::make_unique<Output>(name);
 		}
 
-		Component *create4001(const std::string &name) const noexcept
+		std::unique_ptr<IComponent> create4001(const std::string &name) const noexcept
 		{
-			return new C4001(name);
+			return std::make_unique<C4001>(name);
 		}
 
-		Component *create4008(const std::string &name) const noexcept
+		std::unique_ptr<IComponent> create4008(const std::string &name) const noexcept
 		{
-			return new C4008(name);
+			return std::make_unique<C4008>(name);
 		}
 
-		Component *create4011(const std::string &name) const noexcept
+		std::unique_ptr<IComponent> create4011(const std::string &name) const noexcept
 		{
-			return new C4011(name);
+			return std::make_unique<C4011>(name);
 		}
 
-		Component *create4030(const std::string &name) const noexcept
+		std::unique_ptr<IComponent> create4030(const std::string &name) const noexcept
 		{
-			return new C4030(name);
+			return std::make_unique<C4030>(name);
 		}
 
-		Component *create4069(const std::string &name) const noexcept
+		std::unique_ptr<IComponent> create4069(const std::string &name) const noexcept
 		{
-			return new C4069(name);
+			return std::make_unique<C4069>(name);
 		}
 
-		Component *create4071(const std::string &name) const noexcept
+		std::unique_ptr<IComponent> create4071(const std::string &name) const noexcept
 		{
-			return new C4071(name);
+			return std::make_unique<C4071>(name);
 		}
 
-		Component *create4081(const std::string &name) const noexcept
+		std::unique_ptr<IComponent> create4081(const std::string &name) const noexcept
 		{
-			return new C4081(name);
+			return std::make_unique<C4081>(name);
 		}
 
-		Component *createTrue(const std::string &name) const noexcept
+		std::unique_ptr<IComponent> createTrue(const std::string &name) const noexcept
 		{
-			return new True(name);
+			return std::make_unique<True>(name);
 		}
 
-		Component *createFalse(const std::string &name) const noexcept
+		std::unique_ptr<IComponent> createFalse(const std::string &name) const noexcept
 		{
-			return new False(name);
+			return std::make_unique<False>(name);
 		}
 
-		Component *createClock(const std::string &name) const noexcept
+		std::unique_ptr<IComponent> createClock(const std::string &name) const noexcept
 		{
-			return new Clock(name);
+			return std::make_unique<Clock>(name);
 		}
 
-		Component *createComponent(const std::string &type, const std::string &name)
+		std::unique_ptr<IComponent> createComponent(const std::string &type, const std::string &name)
 		{
 			if (_fc_fac.find(type) == _fc_fac.end())
 				return nullptr;
