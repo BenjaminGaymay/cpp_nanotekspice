@@ -21,6 +21,10 @@ std::map<std::string, nts::Component *> nts::ManageComp::createChipsets(std::vec
 		throw std::logic_error("Error: no chipset found");
 
 	for (auto &chipset : chipsets) {
+		std::cout << chipset.second << std::endl;
+		if (chipset.second == "")
+			throw std::logic_error("Error: chipsets must have a name");
+
 		if (cList.find(chipset.second) != cList.end())
 			throw std::logic_error("Error: chipset '" + chipset.second + "' already exist");
 

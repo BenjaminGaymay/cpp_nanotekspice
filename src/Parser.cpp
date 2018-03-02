@@ -39,6 +39,8 @@ std::map<std::string, nts::Component *> nts::Parser::parseFile(std::string file)
 			else if (pos != std::string::npos and step == LINKS)
 				links.push_back({line.substr(0, pos), ManageStrings::lstrip(line.erase(0, pos))});
 			}
+			else
+				throw std::logic_error("Error: invalid circuit");
 	}
 
 	if (step == NONE)
