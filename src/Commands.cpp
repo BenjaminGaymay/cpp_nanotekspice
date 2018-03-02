@@ -38,7 +38,7 @@ int nts::Commands::display(std::map<std::string, nts::Component *> &cList)
 	return 0;
 }
 
-int nts::Commands::componentIsDefined(std::map<std::string, nts::Component *> &cList)
+void nts::Commands::componentIsDefined(std::map<std::string, nts::Component *> &cList)
 {
 	nts::Component *component;
 
@@ -46,10 +46,8 @@ int nts::Commands::componentIsDefined(std::map<std::string, nts::Component *> &c
 		component = c.second;
 		if ((component->_type == "input" or component->_type == "clock")
 			and component->_pins[0]->_state == nts::UNDEFINED)
-			return std::cerr << "Error: '" << component->_name << "' is undefined"
-				<< std::endl, 84;
+			throw std::logic_error("Error: '" + component->_name + "' is undefined");
 	}
-	return 0;
 }
 
 void nts::Commands::manageClocks(std::map<std::string, nts::Component *> &cList)
@@ -68,9 +66,7 @@ int nts::Commands::simulate(std::map<std::string, nts::Component *> &cList)
 {
 	nts::Component *component;
 
-	if (componentIsDefined(cList) == 84)
-		return 84;
-
+	componentIsDefined(cList);
 	for (auto &c : cList) {
 		component = c.second;
 		if (component->_type == "output") {
