@@ -28,6 +28,9 @@ std::map<std::string, nts::Component *> nts::Parser::parseFile(std::string file)
 
 	while (std::getline(fd, line)) {
 		ManageStrings::lstrip(line);
+		if (line.find('#') != std::string::npos and line.find('#') != 0)
+			line = ManageStrings::splitString(line, '#')[0];
+
 		if (line.compare(0, 10, ".chipsets:") == 0)
 			step = CHIPSETS;
 		else if (line.compare(0, 7, ".links:") == 0)
@@ -38,6 +41,8 @@ std::map<std::string, nts::Component *> nts::Parser::parseFile(std::string file)
 				chipsets.push_back({line.substr(0, pos), ManageStrings::lstrip(line.erase(0, pos))});
 			else if (pos != std::string::npos and step == LINKS)
 				links.push_back({line.substr(0, pos), ManageStrings::lstrip(line.erase(0, pos))});
+			else
+				throw std::logic_error("Error: invalid circuit");
 			}
 	}
 

@@ -21,6 +21,9 @@ std::map<std::string, nts::Component *> nts::ManageComp::createChipsets(std::vec
 		throw std::logic_error("Error: no chipset found");
 
 	for (auto &chipset : chipsets) {
+		if (chipset.second == "")
+			throw std::logic_error("Error: chipsets must have a name");
+
 		if (cList.find(chipset.second) != cList.end())
 			throw std::logic_error("Error: chipset '" + chipset.second + "' already exist");
 
@@ -106,7 +109,7 @@ int nts::ManageComp::changeInputValue(std::vector<std::string> inputVector, std:
 	nts::Component *input;
 
 	if (inputVector.size() != 2)
-		return std::cerr << "Error: Invalid argument: " << inputVector[0] << std::endl, 84;
+		return std::cerr << "Error: Invalid argument" << std::endl, 84;
 	else if (cList.find(inputVector[0]) == cList.end())
 		return std::cerr << "Error: '" << inputVector[0]
 			<< "' doesn't exist in components list" << std::endl, 84;

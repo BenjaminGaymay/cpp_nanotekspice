@@ -1,8 +1,7 @@
+#qsdqsd
 .chipsets:
-input a
+input a#qsdqsdqs
 input b
-
 output c
-
 .links:
 a:1 c:1
