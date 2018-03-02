@@ -1,8 +1,8 @@
 .chipsets:
 input a
 input b
-output   
 output c
 
 .links:
+
 a:1 c:1
