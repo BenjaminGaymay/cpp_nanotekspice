@@ -16,11 +16,13 @@ namespace nts {
 	public:
 		static int processCommands(const std::string &, std::map<std::string, nts::Component *> &);
 		static int display(std::map<std::string, nts::Component *> &);
+		static int componentIsDefined(std::map<std::string, nts::Component *> &);
 		static int simulate(std::map<std::string, nts::Component *> &);
 		static int loop(std::map<std::string, nts::Component *> &);
 		static int dump(std::map<std::string, nts::Component *> &);
 		static int my_exit(std::map<std::string, nts::Component *> &);
 		static int createSignal();
+		static void manageClocks(std::map<std::string, nts::Component *> &);
 		static void quitLoop(int);
 	};
 }
