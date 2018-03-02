@@ -15,20 +15,20 @@ namespace nts {
 		auto state1 = deps[0]->_state;
 		auto state2 = deps[1]->_state;
 
-		if (state1 == UNDEFINED or state2 == UNDEFINED)
-			return UNDEFINED;
 		if (state1 == FALSE or state2 == FALSE)
 			return FALSE;
-		return TRUE;
+		if (state2 == TRUE and state2 == TRUE)
+			return TRUE;
+		return UNDEFINED;
 	}
 
 	Tristate Gates::gate_nand(std::vector<Pin *> &deps)
 	{
 		auto state = gate_and(deps);
-
+		
 		if (state == UNDEFINED)
 			return UNDEFINED;
-		return state == TRUE ? FALSE : TRUE;
+		return (state == TRUE ? FALSE : TRUE);
 	}
 
 	Tristate Gates::gate_or(std::vector<Pin *> &deps)
@@ -48,8 +48,8 @@ namespace nts {
 		auto state = gate_or(deps);
 
 		if (state == UNDEFINED)
-			return UNDEFINED;
-		return state == TRUE ? FALSE : TRUE;
+			return (UNDEFINED);
+		return (state == TRUE ? FALSE : TRUE);
 	}
 
 	Tristate Gates::gate_xor(std::vector<Pin *> &deps)
@@ -77,7 +77,7 @@ namespace nts {
 
 		if (state == UNDEFINED)
 			return UNDEFINED;
-		return state == TRUE ? TRUE : FALSE;
+		return state == TRUE ? FALSE : TRUE;
 	}
 
 	Tristate Gates::get_output(std::vector<Pin *> &deps)

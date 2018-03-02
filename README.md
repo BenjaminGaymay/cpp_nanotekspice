@@ -27,3 +27,7 @@ Le projet Nanotekspice a commencé pour les deuxièmes année voici quelques inf
 - ADL (argument dependant lookup) : http://h-deb.clg.qc.ca/Sujets/Divers--cplusplus/argument_dependent_lookup.html
 - Modern CMake : https://rix0r.nl/blog/2015/08/13/cmake-guide/, https://steveire.wordpress.com/2017/11/05/embracing-modern-cmake/
 - Livres intéressants: Mastering the C++17 STL, Mastering C++ Programming, Modern C++ Programming Cookbook, effective modern c++, effective c++, effective STL.
+
+
+2 components same name
+input unknown

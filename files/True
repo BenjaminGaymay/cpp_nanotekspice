@@ -3,3 +3,4 @@ true mdrlol
 output ptdr
 .links:
 mdrlol:1 ptdr:1
+:1 :2
