@@ -15,10 +15,10 @@ namespace nts {
 		auto state1 = deps[0]->_state;
 		auto state2 = deps[1]->_state;
 
-		if (state1 == FALSE or state2 == FALSE)
-			return FALSE;
 		if (state1 == UNDEFINED or state2 == UNDEFINED)
 			return UNDEFINED;
+		if (state1 == FALSE or state2 == FALSE)
+			return FALSE;
 		return TRUE;
 	}
 
@@ -36,10 +36,10 @@ namespace nts {
 		auto state1 = deps[0]->_state;
 		auto state2 = deps[1]->_state;
 
-		if (state1 == TRUE or state2 == TRUE)
-			return TRUE;
 		if (state1 == UNDEFINED or state2 == UNDEFINED)
 			return UNDEFINED;
+		if (state1 == TRUE or state2 == TRUE)
+			return TRUE;
 		return FALSE;
 	}
 
@@ -47,6 +47,8 @@ namespace nts {
 	{
 		auto state = gate_or(deps);
 
+		if (state == UNDEFINED)
+			return UNDEFINED;
 		return state == TRUE ? FALSE : TRUE;
 	}
 
