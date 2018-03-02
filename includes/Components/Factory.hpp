@@ -43,7 +43,7 @@ namespace nts {
 			_fc_fac["true"] = &Factory::createTrue;
 			_fc_fac["false"] = &Factory::createFalse;	
 		};
-		~Factory();
+		~Factory() {};
 		Component *createInput(const std::string &name) const noexcept
 		{
 			return new Input(name);
