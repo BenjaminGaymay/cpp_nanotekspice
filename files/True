@@ -1,6 +1,6 @@
 .chipsets:
 true mdrlol
 output ptdr
-true
+
 .links:
 mdrlol:1 ptdr:1
